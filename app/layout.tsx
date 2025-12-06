@@ -1,7 +1,7 @@
 import React from "react";
+import { Inter, Montserrat } from "next/font/google";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
-import { Inter, Montserrat } from "../lib/next-shim";
 import ScrollToTop from "../components/ui/ScrollToTop";
 import ContactWidget from "../components/ui/ContactWidget";
 import SchemaMarkup from "../components/SEO/SchemaMarkup";
@@ -9,10 +9,16 @@ import CanonicalUrl from "../components/SEO/CanonicalUrl";
 import "./globals.css";
 
 // Fonts
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const inter = Inter({ 
+  subsets: ["latin"], 
+  variable: "--font-inter",
+  display: "swap",
+});
+
 const montserrat = Montserrat({
   subsets: ["latin"],
-  builder: "--font-montserrat",
+  variable: "--font-montserrat",
+  display: "swap",
 });
 
 export const metadata = {

@@ -1,5 +1,7 @@
 import React from "react";
-import { Image, Link, notFound } from "../../../lib/next-shim";
+import Image from "next/image";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 import { blogPosts } from "../../../data/mockData";
 import Button from "../../../components/ui/Button";
 
