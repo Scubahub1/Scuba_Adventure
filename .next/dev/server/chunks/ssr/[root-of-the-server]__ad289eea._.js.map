@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 13, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":""}},
-    {"offset": {"line": 17, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Lenovo/Scubahub/app/packages/page.tsx"],"sourcesContent":["import type { Metadata } from \"next\";\r\nimport PackagesClient from \"./PackagesClient\";\r\n\r\nexport const metadata: Metadata = {\r\n  title: \"Dive Packages | Scuba Hub Adventures\",\r\n  description:\r\n    \"All-inclusive dive packages at Netrani Island including accommodation and gear.\",\r\n};\r\n\r\nexport default function PackagesPage() {\r\n  return <PackagesClient />;\r\n}\r\n"],"names":[],"mappings":";;;;;;;AACA;;;AAEO,MAAM,WAAqB;IAChC,OAAO;IACP,aACE;AACJ;AAEe,SAAS;IACtB,qBAAO,8OAAC,6IAAc;;;;;AACxB"}}]
-}
