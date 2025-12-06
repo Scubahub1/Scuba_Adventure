@@ -1,5 +1,6 @@
 import React from "react";
-import { Image, Link } from "../../lib/next-shim";
+import Image from "next/image";
+import Link from "next/link";
 import SectionTitle from "../../components/ui/SectionTitle";
 import { blogPosts } from "../../data/mockData";
 

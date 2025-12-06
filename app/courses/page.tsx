@@ -1,5 +1,6 @@
 import React from "react";
-import { Image, Link } from "../../lib/next-shim";
+import Image from "next/image";
+import Link from "next/link";
 import SectionTitle from "../../components/ui/SectionTitle";
 import Button from "../../components/ui/Button";
 import { courses } from "../../data/mockData";
@@ -224,19 +225,6 @@ export default function CoursesPage() {
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
     </div>
   );
 }

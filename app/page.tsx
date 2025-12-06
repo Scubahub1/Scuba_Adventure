@@ -1,5 +1,6 @@
 import React from "react";
-import { Image, Link } from "../lib/next-shim"; // Shim imports
+import Image from "next/image";
+import Link from "next/link";
 import Button from "../components/ui/Button";
 import SectionTitle from "../components/ui/SectionTitle";
 import { experiences, testimonials } from "../data/mockData";
@@ -12,7 +13,7 @@ export default function Home() {
       {/* HERO SECTION - Always Dark/Immersive */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 md:pt-20">
         {/* Animated Background */}
-        <div className="absolute inset-0 z-0 bg-gradient-to-br from-slate-950 via-sky-900 to-teal-850 animate-ripple bg-[length:200%_200%] bg-pulse"></div>
+        <div className="absolute inset-0 z-0 bg-gradient-to-br from-slate-900 via-sky-700 to-teal-850 animate-ripple bg-[length:200%_200%] bg-pulse"></div>
         <div className="absolute inset-0 z-0 opacity-30 bg-underwater-mesh"></div>
 
         {/* High-res background overlay for premium feel */}
@@ -105,38 +106,6 @@ export default function Home() {
             </Button>
           </div>
         </div>
-
-        <style jsx>{`
-          /* Badge Float Animation - Slow up and down movement */
-          .badge-float {
-            animation: badgeFloat 4s ease-in-out infinite;
-          }
-
-          @keyframes badgeFloat {
-            0%,
-            100% {
-              transform: translateY(0px);
-            }
-            50% {
-              transform: translateY(-15px);
-            }
-          }
-
-          /* Background Pulse - Darkens every 3 seconds */
-          .bg-pulse {
-            animation: bgPulse 6s ease-in-out infinite;
-          }
-
-          @keyframes bgPulse {
-            0%,
-            100% {
-              filter: brightness(1);
-            }
-            50% {
-              filter: brightness(0.7);
-            }
-          }
-        `}</style>
       </section>
 
       {/* ABOUT SNIPPET */}

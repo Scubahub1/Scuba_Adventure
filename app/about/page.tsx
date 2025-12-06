@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import ImageCarousel from "../../components/ImageCarousel";
 
 const teamMembers = [];
 
@@ -38,94 +39,6 @@ const scubaHubImages = [
     tag: "🌊 Dive Into Adventure",
   },
 ];
-
-// 🔹 Reusable image carousel component
-function ImageCarousel({ images, variant = "cyan" }) {
-  const [current, setCurrent] = useState(0);
-
-  useEffect(() => {
-    if (!images || images.length === 0) return;
-
-    const interval = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % images.length);
-    }, 2000); // 2 seconds
-
-    return () => clearInterval(interval);
-  }, [images]);
-
-  if (!images || images.length === 0) return null;
-
-  const stylesByVariant = {
-    cyan: {
-      hoverBorder: "group-hover:border-cyan-500/50",
-      tagBorder: "border-cyan-500/30",
-      tagText: "text-cyan-400",
-    },
-    blue: {
-      hoverBorder: "group-hover:border-blue-500/50",
-      tagBorder: "border-blue-500/30",
-      tagText: "text-blue-400",
-    },
-    emerald: {
-      hoverBorder: "group-hover:border-emerald-500/50",
-      tagBorder: "border-emerald-500/30",
-      tagText: "text-emerald-400",
-    },
-  };
-
-  const variantStyles = stylesByVariant[variant] || stylesByVariant.cyan;
-  const activeImage = images[current];
-
-  return (
-    <div
-      className={`relative h-[450px] rounded-2xl overflow-hidden shadow-2xl border border-slate-700/50 transform group-hover:scale-105 transition-all duration-300 ${variantStyles.hoverBorder}`}
-    >
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent z-10"></div>
-
-      {/* Images */}
-      {images.map((img, index) => (
-        <img
-          key={img.src}
-          src={img.src}
-          alt={img.alt || ""}
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
-            index === current ? "opacity-100" : "opacity-0"
-          }`}
-        />
-      ))}
-
-      {/* Tag bottom-left */}
-      {activeImage?.tag && (
-        <div className="absolute bottom-6 left-6 z-20">
-          <div
-            className={`bg-slate-900/80 backdrop-blur-md px-4 py-2 rounded-lg border ${variantStyles.tagBorder}`}
-          >
-            <p className={`${variantStyles.tagText} text-sm font-semibold`}>
-              {activeImage.tag}
-            </p>
-          </div>
-        </div>
-      )}
-
-      {/* Dots bottom-center */}
-      <div className="absolute bottom-4 inset-x-0 z-30 flex justify-center gap-2">
-        {images.map((_, index) => (
-          <button
-            key={index}
-            type="button"
-            onClick={() => setCurrent(index)}
-            className={`h-2.5 w-2.5 rounded-full border border-white/60 transition-transform duration-200 ${
-              index === current
-                ? "bg-white scale-125"
-                : "bg-white/30 hover:scale-110"
-            }`}
-          />
-        ))}
-      </div>
-    </div>
-  );
-}
 
 export default function AboutPage() {
   return (
@@ -177,13 +90,17 @@ export default function AboutPage() {
           </div>
 
           {/* 🔹 Murudeshwar Carousel */}
-          <ImageCarousel images={murudeshwarImages} variant="cyan" />
+          <div className="group">
+            <ImageCarousel images={murudeshwarImages} variant="cyan" />
+          </div>
         </div>
 
         {/* Netrani Island Section */}
-        <div className="grid md:grid-cols-2 gap-12 items-center mb-32 group">
+        <div className="grid md:grid-cols-2 gap-12 items-center mb-32">
           {/* 🔹 Netrani Carousel */}
-          <ImageCarousel images={netraniImages} variant="blue" />
+          <div className="group">
+            <ImageCarousel images={netraniImages} variant="blue" />
+          </div>
 
           <div className="relative md:order-2">
             <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-3xl blur-2xl group-hover:blur-3xl transition-all duration-500"></div>
@@ -279,7 +196,9 @@ export default function AboutPage() {
           </div>
 
           {/* 🔹 Scuba Hub Carousel */}
-          <ImageCarousel images={scubaHubImages} variant="emerald" />
+          <div className="group">
+            <ImageCarousel images={scubaHubImages} variant="emerald" />
+          </div>
         </div>
 
         {/* Join Team Section Title */}

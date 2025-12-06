@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { usePathname } from "../../lib/next-shim";
+import { usePathname } from "next/navigation";
 
 const CanonicalUrl: React.FC = () => {
   const pathname = usePathname();
