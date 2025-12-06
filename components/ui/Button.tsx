@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 
@@ -6,8 +8,9 @@ interface ButtonProps {
   variant?: "primary" | "secondary" | "outline" | "gradient" | "glow";
   href?: string;
   className?: string;
-  onClick?: () => void;
+  // onClick?: () => void;  // ← REMOVE OR MAKE OPTIONAL WITHOUT PASSING FROM SERVER
   type?: "button" | "submit";
+  disabled?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -15,8 +18,9 @@ const Button: React.FC<ButtonProps> = ({
   variant = "primary",
   href,
   className = "",
-  onClick,
+  // onClick,  // ← DON'T DESTRUCTURE IF NOT USING FROM PROPS
   type = "button",
+  disabled = false,
 }) => {
   const baseStyles =
     "inline-flex items-center justify-center px-6 py-3 rounded-full font-semibold transition-all duration-300 shadow-lg text-sm md:text-base cursor-pointer relative overflow-hidden group";
@@ -37,18 +41,37 @@ const Button: React.FC<ButtonProps> = ({
     glow: "bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/50 hover:shadow-cyan-400/80 hover:shadow-2xl hover:-translate-y-1 before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/0 before:via-white/20 before:to-white/0 before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-700",
   };
 
-  const combinedClasses = `${baseStyles} ${variants[variant]} ${className}`;
+  const disabledStyles = disabled
+    ? "opacity-50 cursor-not-allowed pointer-events-none"
+    : "";
+
+  const combinedClasses = `${baseStyles} ${variants[variant]} ${disabledStyles} ${className}`;
+
+  // Example: Handle onClick INSIDE Button if needed (e.g., analytics)
+  const handleClick = () => {
+    // Add client-side logic here, e.g., gtag('event', 'click', { page: 'courses' });
+    console.log("Button clicked!"); // Replace with your logic
+  };
 
   if (href) {
     return (
-      <Link href={href} className={combinedClasses} onClick={onClick}>
+      <Link
+        href={disabled ? "#" : href}
+        className={combinedClasses}
+        onClick={handleClick} // ← USE INTERNAL HANDLER, NOT PROP
+      >
         <span className="relative z-10">{children}</span>
       </Link>
     );
   }
 
   return (
-    <button type={type} className={combinedClasses} onClick={onClick}>
+    <button
+      type={type}
+      className={combinedClasses}
+      onClick={handleClick} // ← USE INTERNAL HANDLER
+      disabled={disabled}
+    >
       <span className="relative z-10">{children}</span>
     </button>
   );

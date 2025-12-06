@@ -18,6 +18,10 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
+
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "Courses", href: "/courses" },
@@ -29,7 +33,7 @@ const Navbar = () => {
   // Helper to determine if a link is active
   const isActive = (href: string) => {
     if (href === "/") {
-      return pathname === "/" || pathname === "/index.html";
+      return pathname === "/";
     }
     return pathname.startsWith(href);
   };
@@ -146,12 +150,8 @@ const Navbar = () => {
               </Link>
             );
           })}
-          <Button
-            href="/book"
-            variant="primary"
-            onClick={() => setIsOpen(false)}
-          >
-            Book Netrani Dive
+          <Button href="/book" variant="primary">
+            Book Now
           </Button>
         </nav>
       </div>

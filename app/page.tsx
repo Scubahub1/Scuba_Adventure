@@ -3,8 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Button from "../components/ui/Button";
 import SectionTitle from "../components/ui/SectionTitle";
-import { experiences, testimonials } from "../data/mockData";
-import TestimonialSlider from "../components/TestimonialSlider";
+import { experiences } from "../data/mockData";
 import DiveProcess from "../components/DiveProcess";
 
 export default function Home() {
