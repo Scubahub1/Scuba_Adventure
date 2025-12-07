@@ -1,16 +1,5 @@
 import { Experience, BlogPost, FAQ } from "../types";
 
-export interface Course {
-  slug: string;
-  title: string;
-  level: string;
-  duration: string;
-  price: string;
-  description: string;
-  image: string;
-  curriculum: string[];
-}
-
 export const experiences: Experience[] = [
   {
     slug: "stay-rooms-netrani",
