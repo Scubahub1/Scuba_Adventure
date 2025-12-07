@@ -1,4 +1,4 @@
-import { Experience, Package, BlogPost, FAQ, TeamMember } from "../types";
+import { Experience, BlogPost, FAQ } from "../types";
 
 export interface Course {
   slug: string;
@@ -29,100 +29,11 @@ export const experiences: Experience[] = [
   },
 ];
 
-export const courses: Course[] = [
+export const company_info: Company[] = [
   {
-    slug: "open-water-course",
-    title: "PADI Open Water Diver",
-    level: "Beginner Certification",
-    duration: "4 Days",
-    price: "₹24,000",
-    description:
-      "The world’s most popular scuba course. Get certified to dive anywhere in the world up to 18 meters.",
-    image: "https://picsum.photos/id/54/800/600",
-    curriculum: [
-      "Knowledge Development (eLearning)",
-      "Confined Water Dives (Pool training)",
-      "4 Open Water Dives at Netrani",
-      "Final Exam & Certification",
-    ],
-  },
-  {
-    slug: "advanced-open-water",
-    title: "PADI Advanced Open Water",
-    level: "Continuing Education",
-    duration: "2-3 Days",
-    price: "₹22,000",
-    description:
-      "Explore new environments and go deeper. Includes Deep Dive and Navigation Dive plus 3 specialties.",
-    image: "https://picsum.photos/id/192/800/600",
-    curriculum: [
-      "Deep Dive (up to 30m)",
-      "Underwater Navigation",
-      "Peak Performance Buoyancy",
-      "Fish Identification",
-      "Boat Diving",
-    ],
-  },
-  {
-    slug: "rescue-diver",
-    title: "PADI Rescue Diver",
-    level: "Pro Preparation",
-    duration: "3-4 Days",
-    price: "₹26,000",
-    description:
-      "Learn to prevent and manage problems in the water. Serious fun.",
-    image: "https://picsum.photos/id/184/800/600",
-    curriculum: [
-      "Self Rescue",
-      "Rescuing Panicked Divers",
-      "Unresponsive Diver Underwater",
-      "Emergency Management",
-    ],
-  },
-];
-
-export const packages: Package[] = [
-  {
-    id: "beginner-bliss",
-    title: "Netrani Beginner Bliss",
-    subtitle: "Try Scuba + Temple Visit",
-    price: "₹6,500",
-    duration: "2 Days",
-    inclusions: [
-      "Discover Scuba Diving (2 Dives)",
-      "Hotel Stay (1 Night)",
-      "Temple Visit Assistance",
-      "Breakfast",
-    ],
-    recommendedFor: "First Timers",
-  },
-  {
-    id: "certification-camp",
-    title: "Zero to Hero",
-    subtitle: "Open Water Certification",
-    price: "₹28,000",
-    duration: "4 Days / 3 Nights",
-    inclusions: [
-      "PADI Open Water Course",
-      "Accommodation (3 Nights)",
-      "Learning Materials",
-      "Logbook",
-    ],
-    recommendedFor: "Aspiring Divers",
-  },
-  {
-    id: "pro-diver-weekend",
-    title: "Pro Diver Weekend",
-    subtitle: "6 Dives Package",
-    price: "₹12,000",
-    duration: "3 Days",
-    inclusions: [
-      "6 Boat Dives",
-      "Nitrox (Optional)",
-      "Equipment Rental",
-      "Lunch on Boat",
-    ],
-    recommendedFor: "Certified Divers",
+    slug: "open-water-diver",
+    gmail: "yourgmail@gmail.com",
+    phone: "+91 9876543210",
   },
 ];
 
@@ -167,23 +78,6 @@ export const blogPosts: BlogPost[] = [
     date: "February 20, 2024",
     category: "Marine Life",
     coverImage: "https://picsum.photos/id/162/800/600",
-  },
-];
-
-export const teamMembers: TeamMember[] = [
-  {
-    name: "Rajesh Kumar",
-    role: "Lead Instructor",
-    certification: "PADI MSDT",
-    experience: "12 Years",
-    image: "https://picsum.photos/id/237/400/400",
-  },
-  {
-    name: "Anita Desai",
-    role: "Dive Master",
-    certification: "PADI Divemaster",
-    experience: "5 Years",
-    image: "https://picsum.photos/id/238/400/400",
   },
 ];
 

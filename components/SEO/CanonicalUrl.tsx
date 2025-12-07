@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 
 const CanonicalUrl: React.FC = () => {
   const pathname = usePathname();
-  const baseUrl = "https://scubahub.com";
+  const baseUrl = "https://ScubaBoss.com";
   const canonicalUrl = `${baseUrl}${pathname === "/" ? "" : pathname}`;
 
   useEffect(() => {

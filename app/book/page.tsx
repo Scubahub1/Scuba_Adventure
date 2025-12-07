@@ -129,7 +129,7 @@ Please confirm availability! 😊`;
                   required
                   type="tel"
                   className="w-full bg-slate-950/50 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-ocean-500 transition-colors"
-                  placeholder="+91 98765 43210"
+                  placeholder="+91 7022295102"
                   value={formData.phone}
                   onChange={(e) =>
                     setFormData({ ...formData, phone: e.target.value })
@@ -245,9 +245,7 @@ Please confirm availability! 😊`;
               Contact Directly
             </h3>
             <p className="text-slate-400 mb-2">Prefer to talk to a human?</p>
-            <p className="text-2xl font-bold text-white mb-6">
-              +91 98765 43210
-            </p>
+            <p className="text-2xl font-bold text-white mb-6">+91 7022295102</p>
             <p className="text-sm text-slate-500">
               Available 9:00 AM - 8:00 PM IST
               <br />

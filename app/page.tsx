@@ -131,15 +131,15 @@ export default function Home() {
           <div>
             <SectionTitle
               align="left"
-              title="Why Dive With Scuba Hub?"
+              title="Why Dive With Scuba Boss?"
               subtitle="We are the Netrani Island specialists."
             />
 
             <p className="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed md:mt-[-60px]">
-              Scuba Hub Adventures was born from a passion to showcase the
-              hidden underwater gem of India: Netrani Island. Located off
-              Murudeshwar, this heart-shaped island offers the clearest waters
-              in mainland India.
+              Scuba Boss was born from a passion to showcase the hidden
+              underwater gem of India: Netrani Island. Located off Murudeshwar,
+              this heart-shaped island offers the clearest waters in mainland
+              India.
             </p>
             <ul className="space-y-4 mb-8">
               {[

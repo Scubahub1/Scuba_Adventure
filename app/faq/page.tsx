@@ -4,7 +4,7 @@ import FAQAccordion from "../../components/FAQAccordion";
 import { faqs } from "../../data/mockData";
 
 export const metadata = {
-  title: "FAQ | Scuba Hub Adventures",
+  title: "FAQ | Scuba Boss Adventures",
   description: "Frequently asked questions about diving at Netrani Island.",
 };
 

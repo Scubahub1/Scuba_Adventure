@@ -12,7 +12,10 @@ const Footer = () => {
               href="/"
               className="text-2xl font-bold font-display text-white"
             >
-              Scuba<span className="text-ocean-400">Hub</span>
+              Scuba
+              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                Boss
+              </span>
             </Link>
             <p className="text-slate-400 text-sm leading-relaxed">
               Premium scuba diving operators specializing in Netrani Island
@@ -103,11 +106,11 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-3">
                 <span className="text-ocean-400">📞</span>
-                <span>+91 98765 43210</span>
+                <span>+91 7022295102</span>
               </li>
               <li className="flex items-center gap-3">
                 <span className="text-ocean-400">✉️</span>
-                <span>dive@Scuba Hub.com</span>
+                <span>scubahub.adventures@gmail.com</span>
               </li>
             </ul>
           </div>
