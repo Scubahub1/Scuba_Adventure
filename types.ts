@@ -5,16 +5,6 @@ export interface Experience {
   image: string;
 }
 
-export interface Package {
-  id: string;
-  title: string;
-  subtitle: string;
-  price: string;
-  duration: string;
-  inclusions: string[];
-  recommendedFor: string;
-}
-
 export interface BlogPost {
   slug: string;
   title: string;
@@ -22,14 +12,6 @@ export interface BlogPost {
   date: string;
   category: string;
   coverImage: string;
-}
-
-export interface TeamMember {
-  name: string;
-  role: string;
-  certification: string;
-  experience: string;
-  image: string;
 }
 
 export interface FAQ {
