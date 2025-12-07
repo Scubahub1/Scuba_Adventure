@@ -29,14 +29,6 @@ export const experiences: Experience[] = [
   },
 ];
 
-export const company_info: Company[] = [
-  {
-    slug: "open-water-diver",
-    gmail: "yourgmail@gmail.com",
-    phone: "+91 9876543210",
-  },
-];
-
 export const faqs: FAQ[] = [
   {
     question: "Do I need to know how to swim to scuba dive?",
