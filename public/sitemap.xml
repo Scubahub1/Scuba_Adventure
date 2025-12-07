@@ -6,7 +6,7 @@
   
   <!-- Homepage -->
   <url>
-    <loc>https://scubahub.com/</loc>
+    <loc>https://ScubaBoss.com/</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -14,7 +14,7 @@
   
   <!-- About Page -->
   <url>
-    <loc>https://scubahub.com/about</loc>
+    <loc>https://ScubaBoss.com/about</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -22,7 +22,7 @@
   
   <!-- Packages Page -->
   <url>
-    <loc>https://scubahub.com/packages</loc>
+    <loc>https://ScubaBoss.com/packages</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -30,7 +30,7 @@
   
   <!-- Courses Page -->
   <url>
-    <loc>https://scubahub.com/courses</loc>
+    <loc>https://ScubaBoss.com/courses</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -38,7 +38,7 @@
   
   <!-- Gallery Page -->
   <url>
-    <loc>https://scubahub.com/gallery</loc>
+    <loc>https://ScubaBoss.com/gallery</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -46,7 +46,7 @@
   
   <!-- FAQ Page -->
   <url>
-    <loc>https://scubahub.com/faq</loc>
+    <loc>https://ScubaBoss.com/faq</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -54,7 +54,7 @@
   
   <!-- Book Page -->
   <url>
-    <loc>https://scubahub.com/book</loc>
+    <loc>https://ScubaBoss.com/book</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -62,7 +62,7 @@
   
   <!-- Blog Page -->
   <url>
-    <loc>https://scubahub.com/blog</loc>
+    <loc>https://ScubaBoss.com/blog</loc>
     <lastmod>2024-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>

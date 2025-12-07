@@ -11,7 +11,7 @@ const DiveProcess = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         <SectionTitle
-          title="The Scuba Hub Experience"
+          title="The Scuba Boss Experience"
           subtitle="Top-tier equipment and a seamless process from shore to sea."
         />
 

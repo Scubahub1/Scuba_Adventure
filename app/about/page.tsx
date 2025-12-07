@@ -1,8 +1,6 @@
 import React from "react";
 import ImageCarousel from "../../components/ImageCarousel";
 
-const teamMembers = [];
-
 const SUPABASE_BASE =
   "https://dzdqokmlsirlvzcyzxgj.supabase.co/storage/v1/object/public/Scubaimages";
 
@@ -32,7 +30,7 @@ const netraniImages = [
   },
 ];
 
-const scubaHubImages = [
+const ScubaBossImages = [
   {
     src: "https://picsum.photos/id/980/800/800",
     alt: "Scuba Hub Divers Underwater",
@@ -132,7 +130,7 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Scuba Hub Diving Section */}
+        {/* Scuba Boss Diving Section */}
         <div className="grid md:grid-cols-2 gap-12 items-center mb-32 group">
           <div className="relative">
             <div className="absolute -inset-4 bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 rounded-3xl blur-2xl group-hover:blur-3xl transition-all duration-500"></div>
@@ -141,13 +139,13 @@ export default function AboutPage() {
                 🤿
               </div>
               <h2 className="text-3xl font-bold text-white mb-4">
-                Scuba Hub Adventures
+                Scuba Boss Adventures
               </h2>
               <div className="space-y-4 text-slate-300 leading-relaxed">
                 <p>
                   At{" "}
                   <span className="text-emerald-400 font-semibold">
-                    Scuba Hub Adventures
+                    Scuba Boss Adventures
                   </span>
                   , we transformed Netrani Island into a world-class diving
                   destination. Every dive is led by licensed instructors,
@@ -195,9 +193,9 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* 🔹 Scuba Hub Carousel */}
+          {/* 🔹 Scuba Boss Carousel */}
           <div className="group">
-            <ImageCarousel images={scubaHubImages} variant="emerald" />
+            <ImageCarousel images={ScubaBossImages} variant="emerald" />
           </div>
         </div>
 
@@ -226,7 +224,7 @@ export default function AboutPage() {
               We're always looking for passionate Dive Masters and ocean lovers.
             </p>
             <a
-              href="mailto:jobs@scubahub.com"
+              href="mailto:scubahub.adventures@gmail.com"
               className="px-4 py-2 rounded-lg bg-blue-500 hover:bg-blue-900 transition text-white text-sm font-semibold"
             >
               Send CV

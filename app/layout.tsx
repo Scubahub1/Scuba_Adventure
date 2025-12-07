@@ -9,8 +9,8 @@ import CanonicalUrl from "../components/SEO/CanonicalUrl";
 import "./globals.css";
 
 // Fonts
-const inter = Inter({ 
-  subsets: ["latin"], 
+const inter = Inter({
+  subsets: ["latin"],
   variable: "--font-inter",
   display: "swap",
 });
@@ -22,9 +22,9 @@ const montserrat = Montserrat({
 });
 
 export const metadata = {
-  title: "Scuba Hub Adventures | Netrani Island Scuba Diving",
+  title: "Scuba Boss Adventures | Netrani Island Scuba Diving",
   description:
-    "Experience world-class scuba diving at Netrani Island with Scuba Hub Adventures. PADI certified courses, fun dives, and underwater exploration in Karnataka.",
+    "Experience world-class scuba diving at Netrani Island with Scuba Boss Adventures. PADI certified courses, fun dives, and underwater exploration in Karnataka.",
 };
 
 export default function RootLayout({
@@ -36,7 +36,7 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${montserrat.variable}`}>
       <head>
         {/* SSR fallback canonical link */}
-        <link rel="canonical" href="https://scubahub.com" />
+        <link rel="canonical" href="https://ScubaBoss.com" />
       </head>
 
       <body className="font-sans antialiased min-h-screen flex flex-col bg-slate-950 text-slate-100">
