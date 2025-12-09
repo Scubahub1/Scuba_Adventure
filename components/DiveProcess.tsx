@@ -105,10 +105,12 @@ const DiveProcess = () => {
                     className="object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 to-transparent flex flex-col justify-end p-4">
-                    <span className="text-white font-bold text-sm">
+                    <span className="text-white font-bold text-[10px] md:text-xs">
                       {item.name}
                     </span>
-                    <span className="text-ocean-400 text-xs">{item.desc}</span>
+                    <span className="hidden md:block text-ocean-400 text-xs">
+                      {item.desc}
+                    </span>
                   </div>
                 </div>
               ))}

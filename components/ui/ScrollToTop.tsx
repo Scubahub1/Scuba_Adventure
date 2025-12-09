@@ -3,6 +3,21 @@ import React, { useState, useEffect } from "react";
 
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [isDesktopOrTablet, setIsDesktopOrTablet] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      // Define tablet and desktop as >= 768px (common breakpoint for mobile/tablet split)
+      setIsDesktopOrTablet(window.innerWidth >= 768);
+    };
+
+    // Initial check
+    handleResize();
+
+    // Listen for resize
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const toggleVisibility = () => {
@@ -24,6 +39,11 @@ const ScrollToTop = () => {
       behavior: "smooth",
     });
   };
+
+  // Only render if it's desktop or tablet
+  if (!isDesktopOrTablet) {
+    return null;
+  }
 
   return (
     <button

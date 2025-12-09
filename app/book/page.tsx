@@ -3,20 +3,30 @@
 import React, { useState } from "react";
 import SectionTitle from "../../components/ui/SectionTitle";
 import Button from "../../components/ui/Button";
-import { experiences } from "../../data/mockData";
 
 export default function BookPage() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
-    experience: "discover-scuba-netrani",
+    experience: "",
     date: "",
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
   const [isSending, setIsSending] = useState(false);
-  const WHATSAPP_NUMBER = "919876543210";
+
+  const experiences = [
+    {
+      slug: "Scuba Diving",
+      title: "Scuba Diving",
+    },
+    { slug: "Rooms Avilable", title: "Rooms Avilable" },
+    { slug: "Cabs Avilable", title: "Cabs Avilable" },
+  ];
+
+  const WHATSAPP_NUMBER = "917022295102";
+  const SUPPORT_EMAIL = "scubahub.adventures@gmail.com";
   const formatMessageForWhatsApp = (data: typeof formData) => {
     const expTitle =
       experiences.find((exp) => exp.slug === data.experience)?.title ||
@@ -42,14 +52,18 @@ Please confirm availability! 😊`;
     window.open(whatsappUrl, "_blank"); // Opens in new tab; use '_self' to replace current page
   };
 
-  // Send via email (opens user's default email client) – fully client-side
-  const sendToEmail = (toEmail: string = "your-support@email.com") => {
+  const sendToEmail = (toEmail: string = SUPPORT_EMAIL) => {
     const subject = `New Booking Request from ${formData.name}`;
-    const body = formatMessageForWhatsApp(formData); // Reuse the same formatted message
+    const body = formatMessageForWhatsApp(formData);
     const mailtoUrl = `mailto:${toEmail}?subject=${encodeURIComponent(
       subject
     )}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailtoUrl;
+    window.open(
+      `mailto:${toEmail}?subject=${encodeURIComponent(
+        subject
+      )}&body=${encodeURIComponent(body)}`,
+      "_blank"
+    );
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -57,9 +71,8 @@ Please confirm availability! 😊`;
     setIsSending(true);
     console.log("Booking Request:", formData);
 
-    // For static sites: Use client-side methods only (no backend needed)
-    sendToWhatsApp(); // Primary: Opens WhatsApp with pre-filled message
-    // sendToEmail(); // Optional: Uncomment to also open email client (user sends manually)
+    sendToWhatsApp();
+    sendToEmail();
 
     setSubmitted(true);
     setIsSending(false);
@@ -114,7 +127,7 @@ Please confirm availability! 😊`;
                   required
                   type="text"
                   className="w-full bg-slate-950/50 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-ocean-500 transition-colors"
-                  placeholder="John Doe"
+                  placeholder="Enter your full name"
                   value={formData.name}
                   onChange={(e) =>
                     setFormData({ ...formData, name: e.target.value })
@@ -129,7 +142,7 @@ Please confirm availability! 😊`;
                   required
                   type="tel"
                   className="w-full bg-slate-950/50 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-ocean-500 transition-colors"
-                  placeholder="+91 7022295102"
+                  placeholder="+91 XXXXX XXXXX"
                   value={formData.phone}
                   onChange={(e) =>
                     setFormData({ ...formData, phone: e.target.value })
@@ -146,7 +159,7 @@ Please confirm availability! 😊`;
                 required
                 type="email"
                 className="w-full bg-slate-950/50 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-ocean-500 transition-colors"
-                placeholder="john@example.com"
+                placeholder="scuba@example.com"
                 value={formData.email}
                 onChange={(e) =>
                   setFormData({ ...formData, email: e.target.value })
@@ -171,7 +184,6 @@ Please confirm availability! 😊`;
                       {exp.title}
                     </option>
                   ))}
-                  <option value="custom">Other / Custom Package</option>
                 </select>
               </div>
               <div className="space-y-2">
@@ -215,7 +227,7 @@ Please confirm availability! 😊`;
             </Button>
             <p className="text-xs text-center text-slate-500 mt-4">
               * No payment is taken now. We will confirm availability first.
-              Your details will open in WhatsApp for quick sharing.
+              Your details will open in WhatsApp and email for quick sharing.
             </p>
           </form>
         </div>
@@ -244,10 +256,9 @@ Please confirm availability! 😊`;
             <h3 className="text-xl font-bold text-white mb-4">
               Contact Directly
             </h3>
-            <p className="text-slate-400 mb-2">Prefer to talk to a human?</p>
             <p className="text-2xl font-bold text-white mb-6">+91 7022295102</p>
             <p className="text-sm text-slate-500">
-              Available 9:00 AM - 8:00 PM IST
+              Office Timing 9:00 AM - 8:00 PM IST
               <br />
               WhatsApp available on the same number.
             </p>
