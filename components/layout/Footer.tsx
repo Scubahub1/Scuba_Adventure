@@ -98,11 +98,16 @@ const Footer = () => {
             <ul className="space-y-4 text-slate-400 text-sm">
               <li className="flex items-start gap-3">
                 <span className="text-ocean-400">📍</span>
-                <span>
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=Temple+Road%2C+Murudeshwar%2C+Karnataka%2C+India+581350"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-slate-300 hover:text-ocean-400 transition-colors"
+                >
                   Temple Road, Murudeshwar,
                   <br />
                   Karnataka, India 581350
-                </span>
+                </a>
               </li>
               <li className="flex items-center gap-3">
                 <span className="text-ocean-400">📞</span>

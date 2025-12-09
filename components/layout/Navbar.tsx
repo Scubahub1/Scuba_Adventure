@@ -45,7 +45,7 @@ const Navbar = () => {
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         scrolled ? "glass-header py-3 shadow-md" : "bg-transparent py-5"
-      }`}
+      } ${isOpen ? "bg-gradient-to-b from-slate-900 to-slate-950" : ""}`}
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         {/* Logo */}
@@ -54,7 +54,7 @@ const Navbar = () => {
             A
           </div>
           <span
-            className={`text-xl md:text-2xl font-bold font-display tracking-wide ${textColorClass} transition-colors`}
+            className={`text-xl md:text-2xl font-bold text-white font-display tracking-wide ${textColorClass} transition-colors`}
           >
             Scuba
             <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">

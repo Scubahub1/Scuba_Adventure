@@ -3,15 +3,12 @@ import SectionTitle from "../../components/ui/SectionTitle";
 import Button from "../../components/ui/Button";
 import { supabase } from "@/lib/supabase"; // Your Supabase client
 
-// Define the Package interface based on your mock data
+// Updated Package interface based on new table structure (id, slug, time, inclusion)
 interface Package {
   id: number;
-  title: string;
-  subtitle: string;
-  price: string;
-  duration: string;
-  inclusions: string[] | string | null; // jsonb array from DB, or string if not parsed, or null
-  recommendedFor: string;
+  slug: string;
+  time: string;
+  inclusion: string[] | string | null; // jsonb array from DB, or string if not parsed, or null
 }
 
 export const metadata = {
@@ -22,10 +19,10 @@ export const metadata = {
 
 // Make the component async for server-side fetching
 export default async function PackagesPage() {
-  // Fetch packages from Supabase
+  // Fetch packages from Supabase (updated select for new table columns)
   const { data: packages, error } = await supabase
     .from("packages") // Your Supabase table name
-    .select("id, title, subtitle, price, duration, inclusions, recommendedFor"); // All needed fields
+    .select("id, slug, time, inclusion"); // Updated fields
 
   if (error) {
     console.error("Error fetching packages:", error);
@@ -83,8 +80,8 @@ export default async function PackagesPage() {
           {packages.map((pkg: Package, idx) => {
             // Parse inclusions if it's a string (from jsonb not auto-parsed)
             let inclusionsArray: string[] = [];
-            if (pkg.inclusions) {
-              let rawInclusions = pkg.inclusions;
+            if (pkg.inclusion) {
+              let rawInclusions = pkg.inclusion;
               if (typeof rawInclusions === "string") {
                 // Try to fix common issues like trailing comma
                 rawInclusions = rawInclusions.replace(/,\s*\]$/, "]"); // Remove trailing comma before ]
@@ -104,31 +101,10 @@ export default async function PackagesPage() {
               }
             }
 
-            // Fallback for testing (from your mock – remove after DB fix)
-            if (inclusionsArray.length === 0) {
-              if (pkg.title.includes("Beginner")) {
-                inclusionsArray = [
-                  "Discover Scuba Diving (2 Dives)",
-                  "Hotel Stay (1 Night)",
-                  "Temple Visit Assistance",
-                  "Breakfast",
-                ];
-              } else if (pkg.title.includes("Zero")) {
-                inclusionsArray = [
-                  "PADI Open Water Course",
-                  "Accommodation (3 Nights)",
-                  "Learning Materials",
-                  "Logbook",
-                ];
-              } else if (pkg.title.includes("Pro")) {
-                inclusionsArray = [
-                  "6 Boat Dives",
-                  "Nitrox (Optional)",
-                  "Equipment Rental",
-                  "Lunch on Boat",
-                ];
-              }
-            }
+            // Derived fields from DB data
+            const title = pkg.slug.toUpperCase().replace(/-/g, " "); // e.g., 'aqua-splash' -> 'AQUA SPLASH'
+            const recommendedFor =
+              idx === 0 ? "Beginners" : idx === 1 ? "Intermediate" : "Advanced"; // Based on card position
 
             return (
               <div
@@ -163,33 +139,14 @@ export default async function PackagesPage() {
                         : "text-white"
                     }`}
                   >
-                    {pkg.title}
+                    {title}
                   </h3>
-                  <p className="text-slate-400 text-sm leading-relaxed">
-                    {pkg.subtitle}
-                  </p>
                 </div>
 
-                {/* Price */}
+                {/* Duration */}
                 <div className="mb-8 relative">
-                  <div
-                    className={`inline-block ${idx === 1 ? "relative" : ""}`}
-                  >
-                    {idx === 1 && (
-                      <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-2xl blur-xl"></div>
-                    )}
-                    <span
-                      className={`text-5xl font-bold relative ${
-                        idx === 1
-                          ? "bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent"
-                          : "text-white"
-                      }`}
-                    >
-                      {pkg.price}
-                    </span>
-                  </div>
                   <span className="text-slate-500 text-sm block mt-2">
-                    {pkg.duration}
+                    Duration: {pkg.time}
                   </span>
                 </div>
 
@@ -238,7 +195,7 @@ export default async function PackagesPage() {
                         idx === 1 ? "text-cyan-400" : "text-slate-300"
                       }`}
                     >
-                      {pkg.recommendedFor}
+                      {recommendedFor}
                     </span>
                   </div>
                   <Button
@@ -254,6 +211,18 @@ export default async function PackagesPage() {
           })}
         </div>
 
+        {/* Highlighted Quote Section */}
+        <div className="mt-12 mb-16 max-w-2xl mx-auto text-center">
+          <div className="glass-panel py-8 px-6 rounded-2xl border border-cyan-500/20 bg-gradient-to-r from-slate-900/50 via-cyan-500/5 to-slate-900/50 backdrop-blur-sm shadow-xl shadow-cyan-500/10">
+            <blockquote className="text-lg md:text-xl font-light italic text-slate-200 leading-relaxed">
+              <span className="text-cyan-400 font-semibold mr-1">"</span>
+              Non-divers pay only for the boat seat—snorkeling comes free!
+              <span className="text-cyan-400 font-semibold ml-1">"</span>
+            </blockquote>
+            <div className="mt-4 h-px bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent mx-auto w-24"></div>
+          </div>
+        </div>
+
         {/* Bottom CTA Section */}
         <div className="mt-20 text-center max-w-3xl mx-auto">
           <div className="bg-gradient-to-r from-slate-900/50 via-blue-900/30 to-slate-900/50 backdrop-blur-sm rounded-3xl p-10 border border-cyan-500/20">
@@ -265,11 +234,8 @@ export default async function PackagesPage() {
               based on your experience level and preferences.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="primary" href="/contact">
+              <Button variant="primary" href="/book">
                 Talk to an Expert
-              </Button>
-              <Button variant="outline" href="/courses">
-                View Courses
               </Button>
             </div>
           </div>

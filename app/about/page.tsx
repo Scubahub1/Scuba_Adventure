@@ -149,7 +149,7 @@ export default function AboutPage() {
                   </span>
                   , we transformed Netrani Island into a world-class diving
                   destination. Every dive is led by licensed instructors,
-                  top-tier equipment and PADI standards — ensuring both{" "}
+                  top-tier equipment and PADI also SSI standards — ensuring both{" "}
                   <span className="text-white font-semibold">
                     safety and fun
                   </span>

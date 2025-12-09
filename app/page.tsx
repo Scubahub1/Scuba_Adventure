@@ -1,37 +1,69 @@
+"use client";
 import React from "react";
+import Lottie from "lottie-react";
 import Image from "next/image";
 import Link from "next/link";
 import Button from "../components/ui/Button";
 import SectionTitle from "../components/ui/SectionTitle";
 import { experiences } from "../data/mockData";
 import DiveProcess from "../components/DiveProcess";
+import "./globals.css";
+import scubaDiverAnimation from "../components/Animations/Scuba Diver Animation.json";
 
 export default function Home() {
   return (
     <>
-      {/* HERO SECTION - Always Dark/Immersive */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 md:pt-20">
-        {/* Animated Background */}
-        <div className="absolute inset-0 z-0 bg-gradient-to-br from-slate-900 via-sky-700 to-teal-850 animate-ripple bg-[length:200%_200%] bg-pulse"></div>
-        <div className="absolute inset-0 z-0 opacity-30 bg-underwater-mesh"></div>
+        <div className="hidden md:block absolute inset-0 z-0 bg-gradient-to-br from-slate-900 via-sky-700 animate-ripple"></div>
+        <div className="hidden md:block absolute inset-0 z-0 opacity-30 bg-underwater-mesh"></div>
 
-        {/* High-res background overlay for premium feel */}
-        <div className="absolute inset-0 z-0 opacity-20 mix-blend-overlay">
+        <div className="absolute inset-0 z-0 opacity-100 md:opacity-20 md:mix-blend-overlay">
           <Image
             src="https://picsum.photos/id/16/1600/900"
             alt="Underwater Texture"
             fill
-            className="object-cover"
+            className="hidden md:block object-cover"
+          />
+          <Image
+            src="https://dzdqokmlsirlvzcyzxgj.supabase.co/storage/v1/object/public/Scubaimages/Diver.webp"
+            alt="Underwater Img"
+            fill
+            className="md:hidden object-cover"
           />
         </div>
 
-        {/* Floating Bubbles Decoration */}
-        <div className="absolute top-1/4 left-1/4 w-4 h-4 rounded-full bg-white/10 blur-[1px] animate-float"></div>
-        <div className="absolute top-1/2 left-3/4 w-8 h-8 rounded-full bg-white/10 blur-[2px] animate-float-delayed"></div>
+        <div className="hidden md:block">
+          <div className="absolute top-1/4 left-1/4 w-4 h-4 rounded-full bg-white/10 blur-[1px] animate-float"></div>
+          <div className="absolute top-1/2 left-3/4 w-8 h-8 rounded-full bg-white/10 blur-[2px] animate-float-delayed"></div>
+          <div
+            className="absolute bottom-1/4 right-1/4 w-6 h-6 rounded-full bg-white/15 blur-[1.5px] animate-float-slow"
+            style={{ animationDelay: "1s" }}
+          ></div>
+          <div
+            className="absolute top-3/4 left-1/2 w-3 h-3 rounded-full bg-white/5 blur-[0.5px] animate-float-fast"
+            style={{ animationDelay: "0.5s" }}
+          ></div>
+          <div
+            className="absolute bottom-1/2 right-1/2 w-5 h-5 rounded-full bg-white/20 blur-[1px] animate-float-delayed"
+            style={{ animationDelay: "2.5s" }}
+          ></div>
+
+          <div
+            className="absolute top-1/3 right-1/3 w-7 h-7 rounded-full bg-white/8 blur-[1.8px] animate-float-slow"
+            style={{ animationDelay: "3s" }}
+          ></div>
+          <div
+            className="absolute top-1/7 right-1/5 w-7 h-7 rounded-full bg-white/8 blur-[1.8px] animate-float-slow"
+            style={{ animationDelay: "3.5s" }}
+          ></div>
+          <div
+            className="absolute top-1/3 right-1/9 w-7 h-7 rounded-full bg-white/8 blur-[1.8px] animate-float-slow"
+            style={{ animationDelay: "4s" }}
+          ></div>
+        </div>
 
         <div className="container relative z-10 px-4 text-center flex flex-col items-center">
-          {/* Premium Location Badge - CLICKABLE - With Floating Animation */}
-          <div className="mb-8 badge-float">
+          <div className="mb-8 badge-float bg-blue-00  rounded-full">
             <a
               href="https://www.google.com/maps/place/Netrani+Island"
               target="_blank"
@@ -39,7 +71,7 @@ export default function Home() {
               className="glass-panel px-6 py-2 rounded-full flex items-center gap-3 border border-ocean-400/30 shadow-[0_0_15px_rgba(56,189,248,0.3)] hover:bg-white/10 transition-colors group cursor-pointer"
             >
               <span className="relative flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-ocean-400 opacity-75"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-ocean-400 opacity-75 "></span>
                 <span className="relative inline-flex rounded-full h-3 w-3 bg-ocean-500"></span>
               </span>
               <span className="text-white font-semibold tracking-wide text-sm uppercase group-hover:text-ocean-300 transition-colors">
@@ -88,43 +120,52 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="flex gap-4 mb-4">
-            <Button
-              href="/book"
-              variant="primary"
-              className="px-8 py-3 text-lg"
-            >
-              Book Dive
-            </Button>
-            <Button
-              href="/packages"
-              variant="outline"
-              className="px-8 py-3 text-lg"
-            >
-              Packages
-            </Button>
+          <div className="flex gap-4 mb-4 cursor-pointer">
+            <Link href="/book">
+              <Button
+                variant="primary"
+                className="px-8 py-3 text-lg"
+                type="button"
+              >
+                Book Dive
+              </Button>
+            </Link>
+            <Link href="/packages">
+              <Button
+                variant="outline"
+                className="px-8 py-3 text-lg"
+                type="button"
+              >
+                Packages
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
 
       {/* ABOUT SNIPPET */}
-      <section className="py-17 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-800 transition-colors duration-300">
+      <section className="py-15 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-800 transition-colors duration-300">
         <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
-          <div className="relative">
-            <div className="absolute inset-0 bg-teal-500/20 rounded-2xl transform rotate-3"></div>
-            <div
-              className="relative 
-  h-[400px] w-full                     /* Desktop */
-  max-md:h-[220px]                     /* Tablets */
-  max-sm:h-[200px]                     /* Small mobiles */
-  max-[380px]:h-[160px]                /* Extra small mobiles */
-  rounded-2xl overflow-hidden shadow-2xl"
-            >
-              <Image
-                src="https://picsum.photos/id/40/800/800"
-                alt="Diver at Netrani Island"
-                fill
+          <div className="relative md:mt-[150px] mt-[70px]">
+            <img
+              src="https://dzdqokmlsirlvzcyzxgj.supabase.co/storage/v1/object/public/Scubaimages/waterviews.webp"
+              alt="deepsea"
+              className="absolute inset-0 object-cover z--30 rounded-[200px]"
+            />
+            <div className="relative w-full h-[400px] sm:h-[500px] md:h-[600px] lg:h-[800px] mt-[-140px] mb-[-70px] md:mt-[-240px] md:mb-[-160px] z-10">
+              <Lottie
+                animationData={scubaDiverAnimation}
+                loop={true}
+                autoplay={true}
                 className="object-cover hover:scale-105 transition-transform duration-700"
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100%",
+                }}
+                title="Diver at Netrani Island"
               />
             </div>
           </div>
@@ -135,7 +176,7 @@ export default function Home() {
               subtitle="We are the Netrani Island specialists."
             />
 
-            <p className="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed md:mt-[-60px]">
+            <p className="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed md:mt-[-60px] mt-[-60px]">
               Scuba Boss was born from a passion to showcase the hidden
               underwater gem of India: Netrani Island. Located off Murudeshwar,
               this heart-shaped island offers the clearest waters in mainland
@@ -159,14 +200,15 @@ export default function Home() {
                 </li>
               ))}
             </ul>
-            <Button href="/about" variant="secondary">
-              Know More
-            </Button>
+            <Link href="/about">
+              <Button variant="secondary" type="button">
+                Know More
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* DIVE PROCESS & GEAR (Component Handles its own dark/light bg) */}
       <DiveProcess />
 
       {/* EXPERIENCES */}
@@ -179,7 +221,6 @@ export default function Home() {
 
           <div className="grid md:grid-cols-2 gap-5 justify-center items-center">
             {experiences.slice(0, 3).map((exp, index) => {
-              // Icons for different services
               const icons: { [key: string]: string } = {
                 "Rooms Available": "🏨",
                 "Cab Services Available": "🚕",
@@ -189,7 +230,7 @@ export default function Home() {
               return (
                 <a
                   key={exp.slug}
-                  href="tel:+917022295102"
+                  href="tel:+919740662365"
                   className="block animate-fade-in-up"
                   style={{ animationDelay: `${index * 0.2}s` }}
                 >

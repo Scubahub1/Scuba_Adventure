@@ -29,29 +29,6 @@ export const experiences: Experience[] = [
   },
 ];
 
-export const faqs: FAQ[] = [
-  {
-    question: "Do I need to know how to swim to scuba dive?",
-    answer:
-      'For the "Discover Scuba Diving" experience at Netrani, swimming is NOT required. However, for certification courses like the Open Water Diver, basic swimming skills are mandatory.',
-  },
-  {
-    question: "What is the best time to visit Netrani Island?",
-    answer:
-      "The diving season at Netrani runs from October to May. The clearest water is usually found between December and March.",
-  },
-  {
-    question: "How do we reach Netrani Island?",
-    answer:
-      "Our dives operate from Murudeshwar. We take a 75-90 minute boat ride from the Murudeshwar temple jetty to reach the island.",
-  },
-  {
-    question: "Is it safe for kids?",
-    answer:
-      "Yes! Kids aged 10 and above can participate in scuba diving. We have special gear and instructors trained to work with children.",
-  },
-];
-
 export const blogPosts: BlogPost[] = [
   {
     slug: "beginners-guide-netrani",

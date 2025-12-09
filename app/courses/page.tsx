@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import SectionTitle from "../../components/ui/SectionTitle";
 import Button from "../../components/ui/Button";
-import { supabase } from "@/lib/supabase"; // Adjust path to your Supabase client
+import { supabase } from "@/lib/supabase";
 
 // Define the Course interface based on your mock data structure
 interface Course {
@@ -268,11 +268,8 @@ export default async function CoursesPage() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button variant="glow" href="/contact">
+                <Button variant="glow" href="/book">
                   Contact an Instructor
-                </Button>
-                <Button variant="outline" href="/about">
-                  Learn About Our Team
                 </Button>
               </div>
             </div>
@@ -281,18 +278,37 @@ export default async function CoursesPage() {
 
         {/* PADI Badge Section */}
         <div className="mt-16 text-center">
-          <div className="inline-flex items-center gap-3 px-6 py-3 bg-slate-900/50 backdrop-blur-sm border border-slate-700/50 rounded-full">
-            <svg
-              className="w-6 h-6 text-cyan-400"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 18c-3.86-.94-6.5-5.03-6.5-9V8.34L12 5.18l6.5 3.16V11c0 3.97-2.64 8.06-6.5 9z" />
-            </svg>
+          <a
+            href="https://www.padi.com/shop-online"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 px-6 py-3 bg-slate-900/50 backdrop-blur-sm border border-slate-700/50 rounded-full cursor-pointer hover:bg-slate-800/50 transition-colors no-underline"
+          >
+            <img
+              src="https://dzdqokmlsirlvzcyzxgj.supabase.co/storage/v1/object/public/Scubaimages/padi.png"
+              alt="PADI Logo"
+              className="w-13 h-8"
+            />{" "}
             <span className="text-slate-300 text-sm font-medium">
               Certified PADI Training Center
             </span>
-          </div>
+          </a>
+          <a
+            href="https://www.divessi.com/en/home"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-6 px-6 mt-3 py-3 bg-slate-900/50 backdrop-blur-sm border border-slate-700/50 rounded-full cursor-pointer hover:bg-slate-800/50 transition-colors no-underline"
+          >
+            <img
+              src="https://dzdqokmlsirlvzcyzxgj.supabase.co/storage/v1/object/public/Scubaimages/ssi.png"
+              alt="SSI"
+              className="w-13 h-8"
+            />
+
+            <span className="text-slate-300 text-sm font-medium">
+              Certified SSI Training Center
+            </span>
+          </a>
         </div>
       </div>
     </div>
