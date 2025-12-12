@@ -145,7 +145,7 @@ export default async function PackagesPage() {
 
                 {/* Duration */}
                 <div className="mb-8 relative">
-                  <span className="text-slate-500 text-sm block mt-2">
+                  <span className="text-slate-300 font-bold text-lg block mt-2">
                     Duration: {pkg.time}
                   </span>
                 </div>
@@ -188,16 +188,6 @@ export default async function PackagesPage() {
 
                 {/* Footer */}
                 <div className="mt-auto pt-6 border-t border-slate-700/50">
-                  <div className="text-center text-sm text-slate-400 mb-4 flex items-center justify-center gap-2">
-                    <span className="text-slate-500">Best for:</span>
-                    <span
-                      className={`font-semibold ${
-                        idx === 1 ? "text-cyan-400" : "text-slate-300"
-                      }`}
-                    >
-                      {recommendedFor}
-                    </span>
-                  </div>
                   <Button
                     href={`/book?package=${pkg.id}`} // Dynamic for specific package
                     variant={idx === 1 ? "glow" : "outline"}

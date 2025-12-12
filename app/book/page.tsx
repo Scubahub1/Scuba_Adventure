@@ -11,6 +11,7 @@ export default function BookPage() {
     phone: "",
     experience: "",
     date: "",
+    timeSlot: "",
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
@@ -21,8 +22,13 @@ export default function BookPage() {
       slug: "Scuba Diving",
       title: "Scuba Diving",
     },
-    { slug: "Rooms Avilable", title: "Rooms Avilable" },
-    { slug: "Cabs Avilable", title: "Cabs Avilable" },
+    { slug: "Rooms Avilable", title: "Rooms Avilabllebility" },
+    { slug: "Cabs Avilable", title: "Cabs Avilabllebility" },
+  ];
+
+  const timeSlots = [
+    { slug: "7AM", title: "7AM batch" },
+    { slug: "12PM", title: "12 PM batch" },
   ];
 
   const WHATSAPP_NUMBER = "917022295102";
@@ -31,6 +37,9 @@ export default function BookPage() {
     const expTitle =
       experiences.find((exp) => exp.slug === data.experience)?.title ||
       data.experience;
+    const timeSlotTitle =
+      timeSlots.find((slot) => slot.slug === data.timeSlot)?.title ||
+      data.timeSlot;
     return `
 New Booking Request from ${data.name}:
 
@@ -40,6 +49,7 @@ New Booking Request from ${data.name}:
 - Phone: ${data.phone}
 - Experience: ${expTitle}
 - Date: ${data.date}
+- Time Slot: ${timeSlotTitle || "None"}
 - Message: ${data.message || "None"}
 
 Please confirm availability! 😊`;
@@ -175,10 +185,15 @@ Please confirm availability! 😊`;
                 <select
                   className="w-full bg-slate-950/50 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-ocean-500 transition-colors appearance-none"
                   value={formData.experience}
-                  onChange={(e) =>
-                    setFormData({ ...formData, experience: e.target.value })
-                  }
+                  onChange={(e) => {
+                    setFormData({
+                      ...formData,
+                      experience: e.target.value,
+                      timeSlot: "", // Reset time slot when experience changes
+                    });
+                  }}
                 >
+                  <option value="">Select experience</option>
                   {experiences.map((exp) => (
                     <option key={exp.slug} value={exp.slug}>
                       {exp.title}
@@ -201,6 +216,28 @@ Please confirm availability! 😊`;
                 />
               </div>
             </div>
+
+            {formData.experience === "Scuba Diving" && (
+              <div className="space-y-2">
+                <label className="text-sm font-semibold text-slate-300">
+                  Time Slot (based on monsoon)
+                </label>
+                <select
+                  className="w-full bg-slate-950/50 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-ocean-500 transition-colors appearance-none"
+                  value={formData.timeSlot}
+                  onChange={(e) =>
+                    setFormData({ ...formData, timeSlot: e.target.value })
+                  }
+                >
+                  <option value="">Select a time slot</option>
+                  {timeSlots.map((slot) => (
+                    <option key={slot.slug} value={slot.slug}>
+                      {slot.title}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
 
             <div className="space-y-2">
               <label className="text-sm font-semibold text-slate-300">
