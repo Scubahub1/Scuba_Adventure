@@ -18,14 +18,15 @@ export const experiences: Experience[] = [
     shortDescription:
       "Comfortable rooms to relax before and after your adventure.",
     image:
-      "https://images.pexels.com/photos/17432312/pexels-photo-17432312.jpeg",
+      "https://dzdqokmlsirlvzcyzxgj.supabase.co/storage/v1/object/public/Scubaimages/Resort.webp",
   },
   {
     slug: "cab-services-netrani",
     title: "Cab Services Available",
     shortDescription:
       "Comfortable cab transfers to ensure a smooth and stress-free journey.",
-    image: "https://images.pexels.com/photos/7598015/pexels-photo-7598015.jpeg",
+    image:
+      "https://dzdqokmlsirlvzcyzxgj.supabase.co/storage/v1/object/public/Scubaimages/Cabs.webp",
   },
 ];
 
@@ -119,12 +120,13 @@ export const equipment = [
   {
     name: "Dive Mask",
     image:
-      "https://dzdqokmlsirlvzcyzxgj.supabase.co/storage/v1/object/public/Scubaimages/mask-snorkel-diving-beach.webp",
+      "https://dzdqokmlsirlvzcyzxgj.supabase.co/storage/v1/object/public/Scubaimages/diving%20mask.webp",
     desc: "Anti-fog tempered glass & wide vision",
   },
   {
     name: "Snorkel Tube",
-    image: "https://images.pexels.com/photos/532803/pexels-photo-532803.jpeg",
+    image:
+      "https://dzdqokmlsirlvzcyzxgj.supabase.co/storage/v1/object/public/Scubaimages/mask-snorkel-diving-beach.webp",
     desc: "Dry-top valve for comfortable surface breathing",
   },
   {

@@ -1,21 +1,19 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import SectionTitle from "../../components/ui/SectionTitle";
 import Button from "../../components/ui/Button";
 import { supabase } from "@/lib/supabase";
 
-// Define the Course interface based on your mock data structure
+// Define the Course interface
 interface Course {
   id: number;
   slug: string;
-  image: string; // Path to image in Supabase Storage
   title: string;
   level: string;
   duration: string;
-  price: string; // Or number if numeric in DB
+  price: string;
   description: string;
-  curriculum: string[]; // Array of strings (jsonb in DB)
+  curriculum: string[];
 }
 
 export const metadata = {
@@ -24,14 +22,12 @@ export const metadata = {
     "Become a certified PADI diver at Netrani Island. Open Water, Advanced, and Rescue courses available.",
 };
 
-// Make the component async for server-side data fetching
 export default async function CoursesPage() {
-  // Fetch courses from Supabase (server-side)
+  // Fetch courses from Supabase
   const { data: courses, error } = await supabase
-    .from("courses") // Your Supabase table name
-    .select(
-      "id, slug, image, title, level, duration, price, description, curriculum"
-    ); // Select all needed fields
+    .from("courses")
+    .select("id, slug, title, level, duration, price, description, curriculum")
+    .order("id", { ascending: true }); // Added sorting by ID to ensure ID 1 left, ID 2 right
 
   if (error) {
     console.error("Error fetching courses:", error);
@@ -50,7 +46,6 @@ export default async function CoursesPage() {
     );
   }
 
-  // If no courses, show empty state
   if (!courses || courses.length === 0) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950 flex items-center justify-center">
@@ -69,6 +64,42 @@ export default async function CoursesPage() {
     );
   }
 
+  // Hardcoded different images – prioritized by ID for main courses
+  const getCourseImage = (course: Course): string => {
+    if (course.id === 1) {
+      // ID 1 (likely Open Water): Vibrant open water with divers over colorful coral reef & fish
+      return "https://res.cloudinary.com/padi/image/upload/f_auto,q_75,w_auto,dpr_auto/v1733734918/CDN/commerce/discover-scuba-diving-1.webp"; // Alternative: great vibrant reef scene
+      // Or this one for even more color: https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=2113706888653100 (from Netrani group)
+    }
+    if (course.id === 2) {
+      // ID 2 (likely Advanced): Dramatic wreck adventure dive
+      return "https://sundiversroatan.com/wp-content/uploads/2023/05/wreck-dive-deep-dive-advanced-open-water-2-scaled-e1685314512421.jpeg";
+    }
+
+    // Fallback to title-based (for Rescue, Discover, etc.)
+    const lowerTitle = course.title.toLowerCase();
+
+    if (lowerTitle.includes("open water")) {
+      return "https://res.cloudinary.com/padi/image/upload/f_auto,q_75,w_auto,dpr_auto/v1733734918/CDN/commerce/discover-scuba-diving-1.webp";
+    }
+    if (lowerTitle.includes("advanced")) {
+      return "https://sundiversroatan.com/wp-content/uploads/2023/05/wreck-dive-deep-dive-advanced-open-water-2-scaled-e1685314512421.jpeg";
+    }
+    if (lowerTitle.includes("rescue")) {
+      return "https://pros-blog.padi.com/wp-content/uploads/2024/03/rescue-diver-3.jpeg";
+    }
+    if (
+      lowerTitle.includes("discover") ||
+      lowerTitle.includes("try") ||
+      lowerTitle.includes("dsd")
+    ) {
+      return "https://res.cloudinary.com/padi/image/upload/f_auto,q_75,w_auto,dpr_auto/v1733734918/CDN/commerce/discover-scuba-diving-1.webp";
+    }
+
+    // Fallback: Vibrant Netrani-style coral reef
+    return "https://miro.medium.com/v2/resize:fit:1400/1*LaDGEn6VKLwV1-MiINXeww.jpeg";
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950 relative overflow-hidden">
       {/* Animated Background Elements */}
@@ -81,17 +112,12 @@ export default async function CoursesPage() {
       <div className="pt-32 pb-20 container mx-auto px-4 relative z-10">
         <SectionTitle
           title="PADI Certification Courses"
-          subtitle="Transform your life. Become a certified scuba diver with our expert instructors."
+          subtitle="Transform your life. Become a certified scuba diver with our expert instructors at Netrani Island."
         />
 
         <div className="grid lg:grid-cols-2 gap-8 max-w-7xl mx-auto mt-16">
           {courses.map((course: Course, idx) => {
-            // Get full public URL for image if stored as path
-            const {
-              data: { publicUrl },
-            } = supabase.storage
-              .from("course-images") // Your Storage bucket name
-              .getPublicUrl(course.image);
+            const imageUrl = getCourseImage(course);
 
             return (
               <div
@@ -104,10 +130,12 @@ export default async function CoursesPage() {
                 {/* Image Section */}
                 <div className="relative w-full h-64 overflow-hidden">
                   <Image
-                    src={publicUrl} // Full public URL from Storage
+                    src={imageUrl}
                     alt={course.title}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    unoptimized
+                    priority={idx < 2}
                   />
 
                   {/* Gradient Overlay */}
@@ -143,7 +171,6 @@ export default async function CoursesPage() {
 
                 {/* Content Section */}
                 <div className="p-8 flex flex-col flex-grow">
-                  {/* Header */}
                   <div className="mb-6">
                     <h3 className="text-3xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">
                       {course.title}
@@ -175,15 +202,12 @@ export default async function CoursesPage() {
                     </div>
                   </div>
 
-                  {/* Divider */}
                   <div className="h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent mb-6"></div>
 
-                  {/* Description */}
                   <p className="text-slate-300 mb-6 leading-relaxed">
                     {course.description}
                   </p>
 
-                  {/* Curriculum */}
                   <div className="mb-8 flex-grow">
                     <div className="flex items-center gap-2 mb-4">
                       <svg
@@ -219,7 +243,6 @@ export default async function CoursesPage() {
                     </ul>
                   </div>
 
-                  {/* CTA Button */}
                   <Button
                     href={`/book?course=${course.slug}`}
                     variant="primary"
@@ -236,11 +259,9 @@ export default async function CoursesPage() {
         {/* Help Section */}
         <div className="mt-20 max-w-4xl mx-auto">
           <div className="relative rounded-3xl overflow-hidden">
-            {/* Background Gradient */}
             <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 via-blue-900/50 to-slate-900/80 backdrop-blur-sm"></div>
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-cyan-500/10 via-transparent to-transparent"></div>
 
-            {/* Content */}
             <div className="relative p-10 text-center border border-cyan-500/30 rounded-3xl">
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-cyan-500/20 to-blue-500/20 border border-cyan-400/30 mb-6">
                 <svg
@@ -276,35 +297,35 @@ export default async function CoursesPage() {
           </div>
         </div>
 
-        {/* PADI Badge Section */}
-        <div className="mt-16 text-center">
+        {/* PADI & SSI Badges */}
+        <div className="mt-16 text-center space-y-4">
           <a
             href="https://www.padi.com/shop-online"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-6 py-3 bg-slate-900/50 backdrop-blur-sm border border-slate-700/50 rounded-full cursor-pointer hover:bg-slate-800/50 transition-colors no-underline"
+            className="inline-flex items-center gap-3 px-6 py-3 bg-slate-900/50 backdrop-blur-sm border border-slate-700/50 rounded-full hover:bg-slate-800/50 transition-colors no-underline"
           >
             <img
               src="https://dzdqokmlsirlvzcyzxgj.supabase.co/storage/v1/object/public/Scubaimages/padi.png"
               alt="PADI Logo"
-              className="w-13 h-8"
-            />{" "}
+              className="w-32 h-8 object-contain"
+            />
             <span className="text-slate-300 text-sm font-medium">
               Certified PADI Training Center
             </span>
           </a>
+
           <a
             href="https://www.divessi.com/en/home"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-6 px-6 mt-3 py-3 bg-slate-900/50 backdrop-blur-sm border border-slate-700/50 rounded-full cursor-pointer hover:bg-slate-800/50 transition-colors no-underline"
+            className="inline-flex items-center gap-6 px-6 py-3 bg-slate-900/50 backdrop-blur-sm border border-slate-700/50 rounded-full hover:bg-slate-800/50 transition-colors no-underline"
           >
             <img
               src="https://dzdqokmlsirlvzcyzxgj.supabase.co/storage/v1/object/public/Scubaimages/ssi.png"
-              alt="SSI"
-              className="w-13 h-8"
+              alt="SSI Logo"
+              className="w-32 h-8 object-contain"
             />
-
             <span className="text-slate-300 text-sm font-medium">
               Certified SSI Training Center
             </span>
