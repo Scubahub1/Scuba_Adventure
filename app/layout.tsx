@@ -1,4 +1,5 @@
 import React from "react";
+import type { Metadata } from "next";
 import { Inter, Montserrat } from "next/font/google";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
@@ -8,7 +9,7 @@ import SchemaMarkup from "../components/SEO/SchemaMarkup";
 import CanonicalUrl from "../components/SEO/CanonicalUrl";
 import "./globals.css";
 
-// Fonts
+/* Fonts */
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -21,10 +22,22 @@ const montserrat = Montserrat({
   display: "swap",
 });
 
-export const metadata = {
-  title: "Scuba Boss Adventures | Netrani Island Scuba Diving",
+/* ✅ METADATA (SEO + ICONS) */
+export const metadata: Metadata = {
+  title: "Scuba Boss Adventures",
   description:
     "Experience world-class scuba diving at Netrani Island with Scuba Boss Adventures. PADI certified courses, fun dives, and underwater exploration in Karnataka.",
+  metadataBase: new URL("https://scubaboss.com"),
+  alternates: {
+    canonical: "/",
+  },
+  icons: {
+    icon: "https://dzdqokmlsirlvzcyzxgj.supabase.co/storage/v1/object/public/Scubaimages/23.svg",
+    shortcut:
+      "https://dzdqokmlsirlvzcyzxgj.supabase.co/storage/v1/object/public/Scubaimages/23.svg",
+    apple:
+      "https://dzdqokmlsirlvzcyzxgj.supabase.co/storage/v1/object/public/Scubaimages/23.svg",
+  },
 };
 
 export default function RootLayout({
@@ -34,18 +47,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${montserrat.variable}`}>
-      <head>
-        {/* SSR fallback canonical link */}
-        <link rel="canonical" href="https://ScubaBoss.com" />
-      </head>
-
       <body className="font-sans antialiased min-h-screen flex flex-col bg-slate-950 text-slate-100">
-        {/* Client-only components */}
+        {/* SEO helpers */}
         <CanonicalUrl />
         <SchemaMarkup type="LocalBusiness" />
+
+        {/* Layout */}
         <Navbar />
         <main className="flex-grow">{children}</main>
         <Footer />
+
+        {/* UI helpers */}
         <ScrollToTop />
         <ContactWidget />
       </body>

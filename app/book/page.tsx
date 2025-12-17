@@ -18,10 +18,7 @@ export default function BookPage() {
   const [isSending, setIsSending] = useState(false);
 
   const experiences = [
-    {
-      slug: "Scuba Diving",
-      title: "Scuba Diving",
-    },
+    { slug: "Scuba Diving", title: "Scuba Diving" },
     { slug: "Rooms Avilable", title: "Rooms Avilabllebility" },
     { slug: "Cabs Avilable", title: "Cabs Avilabllebility" },
   ];
@@ -32,14 +29,25 @@ export default function BookPage() {
   ];
 
   const WHATSAPP_NUMBER = "917022295102";
-  const SUPPORT_EMAIL = "scubahub.adventures@gmail.com";
-  const formatMessageForWhatsApp = (data: typeof formData) => {
+
+  /* ---------- helpers (logic only) ---------- */
+
+  const capitalizeName = (name) =>
+    name
+      .trim()
+      .split(" ")
+      .filter(Boolean)
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ");
+
+  const formatMessageForWhatsApp = (data) => {
     const expTitle =
       experiences.find((exp) => exp.slug === data.experience)?.title ||
       data.experience;
+
     const timeSlotTitle =
-      timeSlots.find((slot) => slot.slug === data.timeSlot)?.title ||
-      data.timeSlot;
+      timeSlots.find((slot) => slot.slug === data.timeSlot)?.title || "None";
+
     return `
 New Booking Request from ${data.name}:
 
@@ -49,44 +57,42 @@ New Booking Request from ${data.name}:
 - Phone: ${data.phone}
 - Experience: ${expTitle}
 - Date: ${data.date}
-- Time Slot: ${timeSlotTitle || "None"}
+- Time Slot: ${timeSlotTitle}
 - Message: ${data.message || "None"}
 
 Please confirm availability! 😊`;
   };
 
-  const sendToWhatsApp = () => {
-    const message = formatMessageForWhatsApp(formData);
+  const sendToWhatsApp = (data) => {
+    const message = formatMessageForWhatsApp(data);
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
-    window.open(whatsappUrl, "_blank"); // Opens in new tab; use '_self' to replace current page
+    window.open(whatsappUrl, "_blank");
   };
 
-  const sendToEmail = (toEmail: string = SUPPORT_EMAIL) => {
-    const subject = `New Booking Request from ${formData.name}`;
-    const body = formatMessageForWhatsApp(formData);
-    const mailtoUrl = `mailto:${toEmail}?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(body)}`;
-    window.open(
-      `mailto:${toEmail}?subject=${encodeURIComponent(
-        subject
-      )}&body=${encodeURIComponent(body)}`,
-      "_blank"
-    );
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setIsSending(true);
-    console.log("Booking Request:", formData);
 
-    sendToWhatsApp();
-    sendToEmail();
+    if (!/^[0-9]{10}$/.test(formData.phone)) {
+      alert("Please enter a valid 10-digit mobile number");
+      return;
+    }
+
+    setIsSending(true);
+
+    const formattedData = {
+      ...formData,
+      name: capitalizeName(formData.name),
+      phone: `+91${formData.phone}`,
+    };
+
+    sendToWhatsApp(formattedData);
 
     setSubmitted(true);
     setIsSending(false);
   };
+
+  /* ---------- success screen (unchanged) ---------- */
 
   if (submitted) {
     return (
@@ -117,6 +123,8 @@ Please confirm availability! 😊`;
     );
   }
 
+  /* ---------- FORM UI (UNCHANGED) ---------- */
+
   return (
     <div className="pt-32 pb-20 container mx-auto px-4 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
       <SectionTitle
@@ -144,6 +152,7 @@ Please confirm availability! 😊`;
                   }
                 />
               </div>
+
               <div className="space-y-2">
                 <label className="text-sm font-semibold text-slate-300">
                   Phone Number
@@ -151,11 +160,15 @@ Please confirm availability! 😊`;
                 <input
                   required
                   type="tel"
+                  maxLength={10}
                   className="w-full bg-slate-950/50 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-ocean-500 transition-colors"
                   placeholder="+91 XXXXX XXXXX"
                   value={formData.phone}
                   onChange={(e) =>
-                    setFormData({ ...formData, phone: e.target.value })
+                    setFormData({
+                      ...formData,
+                      phone: e.target.value.replace(/\D/g, ""),
+                    })
                   }
                 />
               </div>
@@ -185,13 +198,13 @@ Please confirm availability! 😊`;
                 <select
                   className="w-full bg-slate-950/50 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-ocean-500 transition-colors appearance-none"
                   value={formData.experience}
-                  onChange={(e) => {
+                  onChange={(e) =>
                     setFormData({
                       ...formData,
                       experience: e.target.value,
-                      timeSlot: "", // Reset time slot when experience changes
-                    });
-                  }}
+                      timeSlot: "",
+                    })
+                  }
                 >
                   <option value="">Select experience</option>
                   {experiences.map((exp) => (
@@ -201,6 +214,7 @@ Please confirm availability! 😊`;
                   ))}
                 </select>
               </div>
+
               <div className="space-y-2">
                 <label className="text-sm font-semibold text-slate-300">
                   Preferred Date
@@ -262,6 +276,7 @@ Please confirm availability! 😊`;
             >
               {isSending ? "Sending..." : "Confirm Request"}
             </Button>
+
             <p className="text-xs text-center text-slate-500 mt-4">
               * No payment is taken now. We will confirm availability first.
               Your details will open in WhatsApp and email for quick sharing.

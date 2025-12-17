@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import ImageCarousel from "../../components/ImageCarousel";
 
 const SUPABASE_BASE =
@@ -24,17 +25,27 @@ const murudeshwarImages = [
 
 const netraniImages = [
   {
-    src: "https://picsum.photos/id/112/800/800",
+    src: "https://dzdqokmlsirlvzcyzxgj.supabase.co/storage/v1/object/public/Scubaimages/Netrani1.jpeg",
     alt: "Netrani Island Diving Waters",
     tag: "💙 Heart of Arabian Sea",
+  },
+  {
+    src: "https://dzdqokmlsirlvzcyzxgj.supabase.co/storage/v1/object/public/Scubaimages/Netrani3.jpeg",
+    alt: "Pigeon Island Coral Reef",
+    tag: "🐠 Pigeon Island Reefs",
   },
 ];
 
 const ScubaBossImages = [
   {
-    src: "https://picsum.photos/id/980/800/800",
+    src: "https://dzdqokmlsirlvzcyzxgj.supabase.co/storage/v1/object/public/Scubaimages/Scubaboss2.jpg",
     alt: "Scuba Hub Divers Underwater",
     tag: "🌊 Dive Into Adventure",
+  },
+  {
+    src: "https://dzdqokmlsirlvzcyzxgj.supabase.co/storage/v1/object/public/Scubaimages/Scubaboss1.jpg",
+    alt: "Professional Scuba Diving Equipment Setup",
+    tag: "🧰 Certified Gear • Oxygen Tanks • Safety Checked",
   },
 ];
 
@@ -115,10 +126,10 @@ export default function AboutPage() {
                   <span className="text-blue-400 font-semibold">
                     Netrani Island
                   </span>{" "}
-                  — fondly known as the Heart of the Arabian Sea. Its
-                  crystal-clear visibility, calm waters, dramatic coral walls
-                  and swirling schools of fish make it one of India's most
-                  stunning dive sites.
+                  — fondly known as the Heart of the Arabian Sea and also called
+                  Pigeon Island. Its crystal-clear visibility, calm waters,
+                  dramatic coral walls, and swirling schools of fish make it one
+                  of India’s most stunning dive sites.
                 </p>
                 <p>
                   The island was once a secret known only to local fishermen.
@@ -135,9 +146,14 @@ export default function AboutPage() {
           <div className="relative">
             <div className="absolute -inset-4 bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 rounded-3xl blur-2xl group-hover:blur-3xl transition-all duration-500"></div>
             <div className="relative bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-700/50 hover:border-emerald-500/50 transition-all duration-300">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-500 to-cyan-600 flex items-center justify-center text-2xl mb-6 shadow-lg shadow-emerald-500/50">
-                🤿
-              </div>
+              <Image
+                src="/Logo.svg"
+                alt="logo"
+                width={90}
+                height={80}
+                priority
+                className="rounded-[50px] mb-2"
+              />
               <h2 className="text-3xl font-bold text-white mb-4">
                 Scuba Boss Adventures
               </h2>

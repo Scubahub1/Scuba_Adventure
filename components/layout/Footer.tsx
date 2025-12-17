@@ -93,13 +93,13 @@ const Footer = () => {
           </div>
 
           {/* Contact */}
-          <div>
+          <div className="md:ml-[-75px] xl:ml-0">
             <h4 className="text-white font-semibold mb-6">Contact Us</h4>
             <ul className="space-y-4 text-slate-400 text-sm">
               <li className="flex items-start gap-3">
                 <span className="text-ocean-400">📍</span>
                 <a
-                  href="https://www.google.com/maps/search/?api=1&query=Temple+Road%2C+Murudeshwar%2C+Karnataka%2C+India+581350"
+                  href="https://www.google.com/maps/place/14%C2%B005'36.9%22N+74%C2%B029'13.1%22E/@14.0935737,74.4844069,17z/data=!3m1!4b1!4m4!3m3!8m2!3d14.0935737!4d74.4869818!5m2!1e4!1e1?hl=en&entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-slate-300 hover:text-ocean-400 transition-colors"
@@ -111,11 +111,18 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-3">
                 <span className="text-ocean-400">📞</span>
-                <span>+91 7022295102</span>
+                <a href="tel:+917022295102" className=" hover:underline">
+                  +91 7022295102
+                </a>
               </li>
               <li className="flex items-center gap-3">
                 <span className="text-ocean-400">✉️</span>
-                <span>scubahub.adventures@gmail.com</span>
+                <a
+                  href="mailto:scubahub.adventures@gmail.com"
+                  className=" hover:underline "
+                >
+                  scubahub.adventures@gmail.com
+                </a>
               </li>
             </ul>
           </div>
@@ -123,10 +130,10 @@ const Footer = () => {
 
         <div className="border-t border-slate-800 pt-8 text-center text-slate-500 text-sm">
           <p>
-            © {new Date().getFullYear()} Scuba Hub — Murudeshwar • Designed &
+            © {new Date().getFullYear()} ScubaBoss — Murudeshwar • Designed &
             Developed by{" "}
             <a
-              href="https://your-portfolio-link-here.com"
+              href="https://portfolio-seven-iota-cbyp0ax1jk.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-400 hover:text-blue-300 hover:underline transition duration-200"

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import Button from "../ui/Button";
 
@@ -50,9 +51,15 @@ const Navbar = () => {
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-blue-500/30 group-hover:shadow-cyan-400/50 transition-all duration-300 group-hover:scale-110">
-            A
-          </div>
+          <Image
+            src="/Logo.svg"
+            alt="logo"
+            width={70}
+            height={50}
+            priority
+            className="rounded-[50px]"
+          />
+
           <span
             className={`text-xl md:text-2xl font-bold text-white font-display tracking-wide ${textColorClass} transition-colors`}
           >
@@ -93,7 +100,11 @@ const Navbar = () => {
 
           <div className="h-6 w-px bg-gradient-to-b from-transparent via-white/30 to-transparent mx-4"></div>
 
-          <Button href="/book" variant="primary" className="py-2 px-5 text-sm">
+          <Button
+            href="/book"
+            variant="primary"
+            className="py-2 px-5 md:text-[10px] xl:text-sm"
+          >
             Book Now
           </Button>
         </nav>
