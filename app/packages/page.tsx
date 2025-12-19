@@ -1,14 +1,13 @@
 import React from "react";
 import SectionTitle from "../../components/ui/SectionTitle";
 import Button from "../../components/ui/Button";
-import { supabase } from "@/lib/supabase"; // Your Supabase client
+import { supabase } from "@/lib/supabase";
 
-// Updated Package interface based on new table structure (id, slug, time, inclusion)
 interface Package {
   id: number;
   slug: string;
   time: string;
-  inclusion: string[] | string | null; // jsonb array from DB, or string if not parsed, or null
+  inclusion: string[] | string | null;
 }
 
 export const metadata = {
@@ -17,12 +16,10 @@ export const metadata = {
     "All-inclusive dive packages at Netrani Island including accommodation and gear.",
 };
 
-// Make the component async for server-side fetching
 export default async function PackagesPage() {
-  // Fetch packages from Supabase (updated select for new table columns)
   const { data: packages, error } = await supabase
-    .from("packages") // Your Supabase table name
-    .select("id, slug, time, inclusion"); // Updated fields
+    .from("packages")
+    .select("id, slug, time, inclusion");
 
   if (error) {
     console.error("Error fetching packages:", error);
@@ -41,7 +38,6 @@ export default async function PackagesPage() {
     );
   }
 
-  // If no packages, show empty state
   if (!packages || packages.length === 0) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950 flex items-center justify-center">
@@ -62,7 +58,6 @@ export default async function PackagesPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950 relative overflow-hidden">
-      {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
@@ -75,16 +70,13 @@ export default async function PackagesPage() {
           subtitle="Hassle-free packages including accommodation, logistics, and diving."
         />
 
-        {/* Pricing Cards */}
         <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto mt-16">
           {packages.map((pkg: Package, idx) => {
-            // Parse inclusions if it's a string (from jsonb not auto-parsed)
             let inclusionsArray: string[] = [];
             if (pkg.inclusion) {
               let rawInclusions = pkg.inclusion;
               if (typeof rawInclusions === "string") {
-                // Try to fix common issues like trailing comma
-                rawInclusions = rawInclusions.replace(/,\s*\]$/, "]"); // Remove trailing comma before ]
+                rawInclusions = rawInclusions.replace(/,\s*\]$/, "]");
                 try {
                   inclusionsArray = JSON.parse(rawInclusions);
                 } catch (parseError) {
@@ -94,17 +86,16 @@ export default async function PackagesPage() {
                     "Raw value:",
                     rawInclusions
                   );
-                  inclusionsArray = []; // Fallback to empty
+                  inclusionsArray = [];
                 }
               } else if (Array.isArray(rawInclusions)) {
                 inclusionsArray = rawInclusions;
               }
             }
 
-            // Derived fields from DB data
-            const title = pkg.slug.toUpperCase().replace(/-/g, " "); // e.g., 'aqua-splash' -> 'AQUA SPLASH'
+            const title = pkg.slug.toUpperCase().replace(/-/g, " ");
             const recommendedFor =
-              idx === 0 ? "Beginners" : idx === 1 ? "Intermediate" : "Advanced"; // Based on card position
+              idx === 0 ? "Beginners" : idx === 1 ? "Intermediate" : "Advanced";
 
             return (
               <div
@@ -118,7 +109,6 @@ export default async function PackagesPage() {
                   animation: `fadeInUp 0.6s ease-out ${idx * 0.15}s both`,
                 }}
               >
-                {/* Popular Badge */}
                 {idx === 1 && (
                   <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
                     <div className="relative">
@@ -130,7 +120,6 @@ export default async function PackagesPage() {
                   </div>
                 )}
 
-                {/* Header */}
                 <div className="mb-6 mt-2">
                   <h3
                     className={`text-3xl font-bold mb-2 ${
@@ -143,14 +132,12 @@ export default async function PackagesPage() {
                   </h3>
                 </div>
 
-                {/* Duration */}
                 <div className="mb-8 relative">
                   <span className="text-slate-300 font-bold text-lg block mt-2">
                     Duration: {pkg.time}
                   </span>
                 </div>
 
-                {/* Divider */}
                 <div
                   className={`h-px mb-8 ${
                     idx === 1
@@ -159,7 +146,6 @@ export default async function PackagesPage() {
                   }`}
                 ></div>
 
-                {/* Inclusions */}
                 <ul className="space-y-4 mb-8 flex-grow">
                   {inclusionsArray.length > 0 ? (
                     inclusionsArray.map((item, i) => (
@@ -186,10 +172,9 @@ export default async function PackagesPage() {
                   )}
                 </ul>
 
-                {/* Footer */}
                 <div className="mt-auto pt-6 border-t border-slate-700/50">
                   <Button
-                    href={`/book?package=${pkg.id}`} // Dynamic for specific package
+                    href={`/book?package=${pkg.id}`}
                     variant={idx === 1 ? "glow" : "outline"}
                     className="w-full"
                   >
@@ -201,7 +186,6 @@ export default async function PackagesPage() {
           })}
         </div>
 
-        {/* Highlighted Quote Section */}
         <div className="mt-12 mb-16 max-w-2xl mx-auto text-center">
           <div className="glass-panel py-8 px-6 rounded-2xl border border-cyan-500/20 bg-gradient-to-r from-slate-900/50 via-cyan-500/5 to-slate-900/50 backdrop-blur-sm shadow-xl shadow-cyan-500/10">
             <blockquote className="text-lg md:text-xl font-light italic text-slate-200 leading-relaxed">
@@ -213,7 +197,6 @@ export default async function PackagesPage() {
           </div>
         </div>
 
-        {/* Bottom CTA Section */}
         <div className="mt-20 text-center max-w-3xl mx-auto">
           <div className="bg-gradient-to-r from-slate-900/50 via-blue-900/30 to-slate-900/50 backdrop-blur-sm rounded-3xl p-10 border border-cyan-500/20">
             <h3 className="text-3xl font-bold text-white mb-4">

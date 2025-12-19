@@ -6,7 +6,6 @@ import { diveProcess, equipment } from "../data/mockData";
 const DiveProcess = () => {
   return (
     <section className="py-24 bg-slate-900 relative overflow-hidden">
-      {/* Subtle background texture */}
       <div className="absolute top-0 left-0 w-full h-full opacity-5 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -15,7 +14,6 @@ const DiveProcess = () => {
           subtitle="Top-tier equipment and a seamless process from shore to sea."
         />
 
-        {/* Process Steps */}
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-20">
           {diveProcess.map((step, index) => (
             <div
@@ -38,7 +36,6 @@ const DiveProcess = () => {
           ))}
         </div>
 
-        {/* Equipment Showcase */}
         <div className="glass-panel rounded-3xl p-8 md:p-12 border border-white/5">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
@@ -64,7 +61,6 @@ const DiveProcess = () => {
                   Suunto Dive Computers for all courses
                 </li>
 
-                {/* New points added */}
                 <li className="flex items-center gap-3 text-slate-200">
                   <span className="w-2 h-2 rounded-full bg-ocean-400"></span>
                   Professional PADI-certified instructors

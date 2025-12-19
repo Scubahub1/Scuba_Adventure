@@ -7,21 +7,17 @@ const ScrollToTop = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      // Define tablet and desktop as >= 768px (common breakpoint for mobile/tablet split)
       setIsDesktopOrTablet(window.innerWidth >= 768);
     };
 
-    // Initial check
     handleResize();
 
-    // Listen for resize
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   useEffect(() => {
     const toggleVisibility = () => {
-      // Show button after scrolling down 300px
       if (window.scrollY > 300) {
         setIsVisible(true);
       } else {
@@ -40,7 +36,6 @@ const ScrollToTop = () => {
     });
   };
 
-  // Only render if it's desktop or tablet
   if (!isDesktopOrTablet) {
     return null;
   }

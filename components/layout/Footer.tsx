@@ -1,20 +1,37 @@
-import React from "react";
 import Link from "next/link";
+import { supabase } from "@/lib/supabase";
 
-const Footer = () => {
+const Footer = async () => {
+  const { data: contact, error } = await supabase
+    .from("contact_info")
+    .select("google_maps_url, phone, email, address")
+    .single();
+
+  const googleMapsUrl =
+    contact?.google_maps_url ||
+    "https://www.google.com/maps/place/14%C2%B005'36.9%22N+74%C2%B029'13.1%22E";
+  const phone = contact?.phone || "+91 7022295102";
+  const email = contact?.email || "scubahub.adventures@gmail.com";
+  const address =
+    contact?.address || "Temple Road, Murudeshwar,\nKarnataka, India 581350";
+
   return (
-    <footer className="bg-slate-1000 pt-16 pb-8  bg-gradient-to-b from-slate-950 via-slate-900 to-slate-1000">
+    <footer className="bg-slate-1000 pt-16 pb-8 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-1000">
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-          {/* Brand Info */}
           <div className="space-y-4">
             <Link
               href="/"
               className="text-2xl font-bold font-display text-white"
             >
-              Scuba
-              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                Boss
+              <span
+                className="md:mb-2 text-2xl md:text-3xl font-bold font-display tracking-wide bg-clip-text text-transparent"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(to bottom, #1e6fb9 0%, #1e6fb9 56%, #facc15 50%, #facc15 100%)",
+                }}
+              >
+                SCUBABOSS
               </span>
             </Link>
             <p className="text-slate-400 text-sm leading-relaxed">
@@ -23,7 +40,6 @@ const Footer = () => {
               values.
             </p>
             <div className="flex gap-4">
-              {/* Social Icons (Simple SVGs) */}
               <div className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-ocean-600 hover:text-white transition-colors cursor-pointer">
                 <span className="sr-only">Instagram</span>
                 <svg
@@ -37,7 +53,6 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Quick Links */}
           <div>
             <h4 className="text-white font-semibold mb-6">Explore</h4>
             <ul className="space-y-3">
@@ -60,7 +75,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Company */}
           <div>
             <h4 className="text-white font-semibold mb-6">Company</h4>
             <ul className="space-y-3">
@@ -72,7 +86,6 @@ const Footer = () => {
                   About Us
                 </Link>
               </li>
-
               <li>
                 <Link
                   href="/faq"
@@ -92,37 +105,44 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact */}
           <div className="md:ml-[-75px] xl:ml-0">
             <h4 className="text-white font-semibold mb-6">Contact Us</h4>
             <ul className="space-y-4 text-slate-400 text-sm">
               <li className="flex items-start gap-3">
                 <span className="text-ocean-400">📍</span>
                 <a
-                  href="https://www.google.com/maps/place/14%C2%B005'36.9%22N+74%C2%B029'13.1%22E/@14.0935737,74.4844069,17z/data=!3m1!4b1!4m4!3m3!8m2!3d14.0935737!4d74.4869818!5m2!1e4!1e1?hl=en&entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D"
+                  href={googleMapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-slate-300 hover:text-ocean-400 transition-colors"
                 >
-                  Temple Road, Murudeshwar,
-                  <br />
-                  Karnataka, India 581350
+                  {address.split("\n").map((line, i) => (
+                    <span key={i}>
+                      {line}
+                      <br />
+                    </span>
+                  ))}
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <span className="text-ocean-400">📞</span>
-                <a href="tel:+917022295102" className=" hover:underline">
-                  +91 7022295102
+                <a
+                  href={`tel:${phone.replace(/\s/g, "")}`}
+                  className="hover:underline"
+                >
+                  {phone}
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <span className="text-ocean-400">✉️</span>
-                <a
-                  href="mailto:scubahub.adventures@gmail.com"
-                  className=" hover:underline "
-                >
-                  scubahub.adventures@gmail.com
-                </a>
+                <div>
+                  <a
+                    href={`mailto:${email?.trim()}`}
+                    className="hover:underline text-slate-300"
+                  >
+                    {email?.trim()}
+                  </a>
+                </div>
               </li>
             </ul>
           </div>
