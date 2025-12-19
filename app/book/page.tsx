@@ -30,8 +30,6 @@ export default function BookPage() {
 
   const WHATSAPP_NUMBER = "917022295102";
 
-  /* ---------- helpers (logic only) ---------- */
-
   const capitalizeName = (name) =>
     name
       .trim()
@@ -92,8 +90,6 @@ Please confirm availability! 😊`;
     setIsSending(false);
   };
 
-  /* ---------- success screen (unchanged) ---------- */
-
   if (submitted) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center px-4 text-center">
@@ -123,8 +119,6 @@ Please confirm availability! 😊`;
     );
   }
 
-  /* ---------- FORM UI (UNCHANGED) ---------- */
-
   return (
     <div className="pt-32 pb-20 container mx-auto px-4 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
       <SectionTitle
@@ -133,7 +127,6 @@ Please confirm availability! 😊`;
       />
 
       <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-        {/* Form */}
         <div className="glass-panel p-8 rounded-3xl border border-white/10">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid md:grid-cols-2 gap-6">
@@ -284,7 +277,6 @@ Please confirm availability! 😊`;
           </form>
         </div>
 
-        {/* Info Side */}
         <div className="space-y-8">
           <div className="bg-ocean-900/20 border border-ocean-500/20 p-8 rounded-3xl">
             <h3 className="text-xl font-bold text-white mb-4">

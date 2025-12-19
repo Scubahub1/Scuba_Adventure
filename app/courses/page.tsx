@@ -4,7 +4,6 @@ import SectionTitle from "../../components/ui/SectionTitle";
 import Button from "../../components/ui/Button";
 import { supabase } from "@/lib/supabase";
 
-// Define the Course interface
 interface Course {
   id: number;
   slug: string;
@@ -23,11 +22,10 @@ export const metadata = {
 };
 
 export default async function CoursesPage() {
-  // Fetch courses from Supabase
   const { data: courses, error } = await supabase
     .from("courses")
     .select("id, slug, title, level, duration, price, description, curriculum")
-    .order("id", { ascending: true }); // Added sorting by ID to ensure ID 1 left, ID 2 right
+    .order("id", { ascending: true });
 
   if (error) {
     console.error("Error fetching courses:", error);
@@ -64,19 +62,14 @@ export default async function CoursesPage() {
     );
   }
 
-  // Hardcoded different images – prioritized by ID for main courses
   const getCourseImage = (course: Course): string => {
     if (course.id === 1) {
-      // ID 1 (likely Open Water): Vibrant open water with divers over colorful coral reef & fish
       return "https://res.cloudinary.com/padi/image/upload/f_auto,q_75,w_auto,dpr_auto/v1733734918/CDN/commerce/discover-scuba-diving-1.webp"; // Alternative: great vibrant reef scene
-      // Or this one for even more color: https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=2113706888653100 (from Netrani group)
     }
     if (course.id === 2) {
-      // ID 2 (likely Advanced): Dramatic wreck adventure dive
       return "https://sundiversroatan.com/wp-content/uploads/2023/05/wreck-dive-deep-dive-advanced-open-water-2-scaled-e1685314512421.jpeg";
     }
 
-    // Fallback to title-based (for Rescue, Discover, etc.)
     const lowerTitle = course.title.toLowerCase();
 
     if (lowerTitle.includes("open water")) {
@@ -96,19 +89,16 @@ export default async function CoursesPage() {
       return "https://res.cloudinary.com/padi/image/upload/f_auto,q_75,w_auto,dpr_auto/v1733734918/CDN/commerce/discover-scuba-diving-1.webp";
     }
 
-    // Fallback: Vibrant Netrani-style coral reef
     return "https://miro.medium.com/v2/resize:fit:1400/1*LaDGEn6VKLwV1-MiINXeww.jpeg";
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950 relative overflow-hidden">
-      {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-40 right-20 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-40 left-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
         <div className="absolute top-1/3 left-1/3 w-[500px] h-[500px] bg-teal-500/5 rounded-full blur-3xl"></div>
       </div>
-
       <div className="pt-32 pb-20 container mx-auto px-4 relative z-10">
         <SectionTitle
           title="PADI Certification Courses"
@@ -127,7 +117,6 @@ export default async function CoursesPage() {
                   animation: `fadeInUp 0.6s ease-out ${idx * 0.2}s both`,
                 }}
               >
-                {/* Image Section */}
                 <div className="relative w-full h-64 overflow-hidden">
                   <Image
                     src={imageUrl}
@@ -138,10 +127,8 @@ export default async function CoursesPage() {
                     priority={idx < 2}
                   />
 
-                  {/* Gradient Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent"></div>
 
-                  {/* Level Badge */}
                   <div className="absolute top-4 left-4">
                     <div className="relative">
                       <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full blur-md opacity-70"></div>
@@ -151,7 +138,6 @@ export default async function CoursesPage() {
                     </div>
                   </div>
 
-                  {/* Certification Icon */}
                   <div className="absolute top-4 right-4 w-12 h-12 bg-slate-900/80 backdrop-blur-sm rounded-full flex items-center justify-center border border-cyan-400/30 group-hover:scale-110 transition-transform">
                     <svg
                       className="w-6 h-6 text-cyan-400"
@@ -169,7 +155,6 @@ export default async function CoursesPage() {
                   </div>
                 </div>
 
-                {/* Content Section */}
                 <div className="p-8 flex flex-col flex-grow">
                   <div className="mb-6">
                     <h3 className="text-3xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">
@@ -256,7 +241,6 @@ export default async function CoursesPage() {
           })}
         </div>
 
-        {/* Help Section */}
         <div className="mt-20 max-w-4xl mx-auto">
           <div className="relative rounded-3xl overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 via-blue-900/50 to-slate-900/80 backdrop-blur-sm"></div>
@@ -297,7 +281,6 @@ export default async function CoursesPage() {
           </div>
         </div>
 
-        {/* PADI & SSI Badges */}
         <div className="mt-16 text-center space-y-4">
           <a
             href="https://www.padi.com/shop-online"

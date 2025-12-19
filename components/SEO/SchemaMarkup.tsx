@@ -7,14 +7,14 @@ interface SchemaMarkupProps {
 
 const SchemaMarkup: React.FC<SchemaMarkupProps> = ({
   type = "LocalBusiness",
-  pageUrl = "https://ScubaBoss.com",
+  pageUrl = "https://ScubaBoss.in",
 }) => {
   const organizationSchema: any = {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Scuba Hub Adventures",
-    url: "https://ScubaBoss.com",
-    logo: "https://ScubaBoss.com/logo.png",
+    url: "https://ScubaBoss.in",
+    logo: "https://ScubaBoss.in/logo.png",
     description:
       "Premium scuba diving operators specializing in Netrani Island adventures. Safety, fun, and marine conservation are our core values.",
     contactPoint: {
@@ -24,23 +24,20 @@ const SchemaMarkup: React.FC<SchemaMarkupProps> = ({
       areaServed: "IN",
       availableLanguage: ["English", "Hindi", "Kannada"],
     },
-    sameAs: [
-      "https://www.instagram.com/ScubaBoss",
-      // Add your social media links here
-    ],
+    sameAs: ["https://www.instagram.com/ScubaBoss"],
   };
 
   const localBusinessSchema: any = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "@id": "https://ScubaBoss.com",
+    "@id": "https://ScubaBoss.in",
     name: "Scuba Hub Adventures",
-    image: "https://ScubaBoss.com/og-image.jpg",
+    image: "https://ScubaBoss.in/og-image.jpg",
     description:
       "Experience world-class scuba diving at Netrani Island with Scuba Hub Adventures. PADI certified courses, fun dives, and underwater exploration in Karnataka, India.",
-    url: "https://ScubaBoss.com",
+    url: "https://ScubaBoss.in",
     telephone: "+91-98765-43210",
-    email: "dive@ScubaBoss.com",
+    email: "dive@ScubaBoss.in",
     address: {
       "@type": "PostalAddress",
       streetAddress: "Temple Road",
@@ -84,12 +81,12 @@ const SchemaMarkup: React.FC<SchemaMarkupProps> = ({
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "Scuba Hub Adventures",
-    url: "https://ScubaBoss.com",
+    url: "https://ScubaBoss.in",
     potentialAction: {
       "@type": "SearchAction",
       target: {
         "@type": "EntryPoint",
-        urlTemplate: "https://ScubaBoss.com/search?q={search_term_string}",
+        urlTemplate: "https://ScubaBoss.in/search?q={search_term_string}",
       },
       "query-input": "required name=search_term_string",
     },

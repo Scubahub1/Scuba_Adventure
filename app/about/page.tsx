@@ -53,7 +53,6 @@ export default function AboutPage() {
   return (
     <div className="pt-32 pb-20 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
       <div className="container mx-auto px-4">
-        {/* Hero Section Title */}
         <div className="text-center mb-20 relative">
           <div className="absolute inset-0 flex items-center justify-center opacity-5">
             <div className="text-9xl">🌊</div>
@@ -67,7 +66,6 @@ export default function AboutPage() {
           <div className="w-24 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto mt-6 rounded-full"></div>
         </div>
 
-        {/* Murudeshwar Temple Section */}
         <div className="grid md:grid-cols-2 gap-12 items-center mb-32 group">
           <div className="relative">
             <div className="absolute -inset-4 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-3xl blur-2xl group-hover:blur-3xl transition-all duration-500"></div>
@@ -98,15 +96,12 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* 🔹 Murudeshwar Carousel */}
           <div className="group">
             <ImageCarousel images={murudeshwarImages} variant="cyan" />
           </div>
         </div>
 
-        {/* Netrani Island Section */}
         <div className="grid md:grid-cols-2 gap-12 items-center mb-32">
-          {/* 🔹 Netrani Carousel */}
           <div className="group">
             <ImageCarousel images={netraniImages} variant="blue" />
           </div>
@@ -141,7 +136,6 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Scuba Boss Diving Section */}
         <div className="grid md:grid-cols-2 gap-12 items-center mb-32 group">
           <div className="relative">
             <div className="absolute -inset-4 bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 rounded-3xl blur-2xl group-hover:blur-3xl transition-all duration-500"></div>
@@ -154,9 +148,8 @@ export default function AboutPage() {
                 priority
                 className="rounded-[50px] mb-2"
               />
-              <h2 className="text-3xl font-bold text-white mb-4">
-                Scuba Boss Adventures
-              </h2>
+
+              <h2 className="text-3xl font-bold text-white mb-4">ScubaBoss</h2>
               <div className="space-y-4 text-slate-300 leading-relaxed">
                 <p>
                   At{" "}
@@ -209,13 +202,11 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* 🔹 Scuba Boss Carousel */}
           <div className="group">
             <ImageCarousel images={ScubaBossImages} variant="emerald" />
           </div>
         </div>
 
-        {/* Join Team Section Title */}
         <div className="text-center mb-16 relative">
           <div className="absolute inset-0 flex items-center justify-center opacity-5">
             <div className="text-9xl">👋</div>
@@ -230,7 +221,6 @@ export default function AboutPage() {
         </div>
 
         <div className="flex justify-center items-center w-full py-0">
-          {/* Hiring card */}
           <div className="glass-panel rounded-2xl p-8 max-w-sm w-full flex flex-col items-center text-center border border-slate-700 shadow-xl">
             <div className="w-16 h-16 rounded-full bg-slate-800 flex items-center justify-center text-2xl mb-4">
               👋

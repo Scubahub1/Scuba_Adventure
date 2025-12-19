@@ -8,7 +8,6 @@ interface ButtonProps {
   variant?: "primary" | "secondary" | "outline" | "gradient" | "glow";
   href?: string;
   className?: string;
-  // onClick?: () => void;  // ← REMOVE OR MAKE OPTIONAL WITHOUT PASSING FROM SERVER
   type?: "button" | "submit";
   disabled?: boolean;
 }
@@ -18,7 +17,6 @@ const Button: React.FC<ButtonProps> = ({
   variant = "primary",
   href,
   className = "",
-  // onClick,  // ← DON'T DESTRUCTURE IF NOT USING FROM PROPS
   type = "button",
   disabled = false,
 }) => {
@@ -47,10 +45,8 @@ const Button: React.FC<ButtonProps> = ({
 
   const combinedClasses = `${baseStyles} ${variants[variant]} ${disabledStyles} ${className}`;
 
-  // Example: Handle onClick INSIDE Button if needed (e.g., analytics)
   const handleClick = () => {
-    // Add client-side logic here, e.g., gtag('event', 'click', { page: 'courses' });
-    console.log("Button clicked!"); // Replace with your logic
+    console.log("Button clicked!");
   };
 
   if (href) {
@@ -58,7 +54,7 @@ const Button: React.FC<ButtonProps> = ({
       <Link
         href={disabled ? "#" : href}
         className={combinedClasses}
-        onClick={handleClick} // ← USE INTERNAL HANDLER, NOT PROP
+        onClick={handleClick}
       >
         <span className="relative z-10">{children}</span>
       </Link>
@@ -69,7 +65,7 @@ const Button: React.FC<ButtonProps> = ({
     <button
       type={type}
       className={combinedClasses}
-      onClick={handleClick} // ← USE INTERNAL HANDLER
+      onClick={handleClick}
       disabled={disabled}
     >
       <span className="relative z-10">{children}</span>

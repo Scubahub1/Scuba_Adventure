@@ -5,17 +5,15 @@ import { usePathname } from "next/navigation";
 
 const CanonicalUrl: React.FC = () => {
   const pathname = usePathname();
-  const baseUrl = "https://ScubaBoss.com";
+  const baseUrl = "https://ScubaBoss.in";
   const canonicalUrl = `${baseUrl}${pathname === "/" ? "" : pathname}`;
 
   useEffect(() => {
-    // Remove existing canonical link if any
     const existingCanonical = document.querySelector('link[rel="canonical"]');
     if (existingCanonical) {
       existingCanonical.remove();
     }
 
-    // Add new canonical link
     const link = document.createElement("link");
     link.rel = "canonical";
     link.href = canonicalUrl;

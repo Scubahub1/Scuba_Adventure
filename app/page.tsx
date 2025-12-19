@@ -13,7 +13,7 @@ import scubaDiverAnimation from "../components/Animations/Scuba Diver Animation.
 export default function Home() {
   return (
     <>
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 md:pt-20">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 md:pt-20 ">
         <div className="hidden md:block absolute inset-0 z-0 bg-gradient-to-br from-slate-900 via-sky-700 animate-ripple"></div>
         <div className="hidden md:block absolute inset-0 z-0 opacity-30 bg-underwater-mesh"></div>
 
@@ -62,8 +62,8 @@ export default function Home() {
           ></div>
         </div>
 
-        <div className="container relative z-10 px-4 text-center flex flex-col items-center">
-          <div className="mb-8 badge-float bg-blue-00  rounded-full">
+        <div className="container relative z-10 px-4 text-center flex flex-col items-center md:mt-7 lg:mt-0 xl:mt-0 ">
+          <div className="mb-8 badge-float bg-blue-00  rounded-full ">
             <a
               href="https://www.google.com/maps/place/Netrani+Island"
               target="_blank"
@@ -98,7 +98,6 @@ export default function Home() {
             coral reefs, and certified PADI professionals waiting for you.
           </p>
 
-          {/* Key Info Chips */}
           <div className="flex flex-wrap justify-center gap-4 mb-10">
             <div className="glass-panel px-6 py-3 rounded-xl text-left min-w-[140px] border border-white/10 hover:border-ocean-400/50 transition-colors">
               <span className="block text-slate-400 text-xs uppercase tracking-wider mb-1">
@@ -143,7 +142,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ABOUT SNIPPET */}
       <section className="py-15 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-800 transition-colors duration-300">
         <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
           <div className="relative md:mt-[150px] mt-[70px]">
@@ -211,7 +209,6 @@ export default function Home() {
 
       <DiveProcess />
 
-      {/* EXPERIENCES */}
       <section className="py-0 relative overflow-hidden bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 transition-colors duration-300">
         <div className="container relative z-10 px-4 mx-auto">
           <SectionTitle
@@ -242,9 +239,7 @@ export default function Home() {
                         fill
                         className="object-cover group-hover:scale-125 transition-transform duration-700"
                       />
-                      {/* Overlay gradient on hover */}
                       <div className="absolute inset-0 bg-gradient-to-t from-blue-600/80 via-blue-500/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                      {/* Icon badge */}
                       <div className="absolute top-4 right-4 w-12 h-12 rounded-full bg-blue-600/90 backdrop-blur-sm flex items-center justify-center text-2xl shadow-lg transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
                         {icon}
                       </div>
@@ -257,7 +252,6 @@ export default function Home() {
                       <p className="text-slate-600 dark:text-slate-400 text-sm mb-4 line-clamp-2">
                         {exp.shortDescription}
                       </p>
-                      {/* Animated button */}
                       <div className="mt-4">
                         <span className="inline-flex items-center gap-2 text-blue-400 font-semibold text-sm group-hover:gap-3 transition-all duration-300">
                           Learn More

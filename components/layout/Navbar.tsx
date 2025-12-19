@@ -19,7 +19,6 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu on route change
   useEffect(() => {
     setIsOpen(false);
   }, [pathname]);
@@ -32,7 +31,6 @@ const Navbar = () => {
     { name: "About", href: "/about" },
   ];
 
-  // Helper to determine if a link is active
   const isActive = (href: string) => {
     if (href === "/") {
       return pathname === "/";
@@ -49,7 +47,6 @@ const Navbar = () => {
       } ${isOpen ? "bg-gradient-to-b from-slate-900 to-slate-950" : ""}`}
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
-        {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
           <Image
             src="/Logo.svg"
@@ -61,22 +58,24 @@ const Navbar = () => {
           />
 
           <span
-            className={`text-xl md:text-2xl font-bold text-white font-display tracking-wide ${textColorClass} transition-colors`}
+            className="text-2xl md:text-3xl font-bold font-display tracking-wide bg-clip-text text-transparent"
+            style={{
+              backgroundImage:
+                "linear-gradient(to bottom, #1e6fb9 0%, #1e6fb9 56%, #facc15 50%, #facc15 100%)",
+            }}
           >
-            Scuba
-            <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-              Boss
-            </span>
+            SCUBABOSS
           </span>
         </Link>
 
-        {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-1">
           {navLinks.map((link) => {
             const active = isActive(link.href);
             return (
-              <div key={link.name} className="relative px-3 py-2 group">
-                {/* Active Indicator (Dot) ABOVE the text */}
+              <div
+                key={link.name}
+                className="relative px-1 lg:px-3 xl:px-3 py-2 group"
+              >
                 {active && (
                   <span className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full shadow-[0_0_10px_rgba(34,211,238,0.8)] animate-pulse"></span>
                 )}
@@ -92,7 +91,6 @@ const Navbar = () => {
                   {link.name}
                 </Link>
 
-                {/* Hover Indicator */}
                 <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-transparent via-cyan-400/70 to-transparent group-hover:w-full transition-all duration-300 rounded-full"></span>
               </div>
             );
@@ -109,7 +107,6 @@ const Navbar = () => {
           </Button>
         </nav>
 
-        {/* Mobile Controls */}
         <div className="flex items-center gap-4 md:hidden">
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -137,7 +134,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu Overlay */}
       <div
         className={`md:hidden absolute top-full left-0 w-full bg-gradient-to-b from-slate-900 to-slate-950 border-t border-cyan-500/20 overflow-hidden transition-all duration-300 shadow-xl shadow-cyan-500/10 ${
           isOpen ? "max-h-[500px] py-6" : "max-h-0 py-0"

@@ -9,7 +9,6 @@ import SchemaMarkup from "../components/SEO/SchemaMarkup";
 import CanonicalUrl from "../components/SEO/CanonicalUrl";
 import "./globals.css";
 
-/* Fonts */
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -22,12 +21,11 @@ const montserrat = Montserrat({
   display: "swap",
 });
 
-/* ✅ METADATA (SEO + ICONS) */
 export const metadata: Metadata = {
   title: "Scuba Boss Adventures",
   description:
     "Experience world-class scuba diving at Netrani Island with Scuba Boss Adventures. PADI certified courses, fun dives, and underwater exploration in Karnataka.",
-  metadataBase: new URL("https://scubaboss.com"),
+  metadataBase: new URL("https://ScubaBoss.in"),
   alternates: {
     canonical: "/",
   },
@@ -48,16 +46,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${montserrat.variable}`}>
       <body className="font-sans antialiased min-h-screen flex flex-col bg-slate-950 text-slate-100">
-        {/* SEO helpers */}
         <CanonicalUrl />
         <SchemaMarkup type="LocalBusiness" />
 
-        {/* Layout */}
         <Navbar />
         <main className="flex-grow">{children}</main>
         <Footer />
 
-        {/* UI helpers */}
         <ScrollToTop />
         <ContactWidget />
       </body>
