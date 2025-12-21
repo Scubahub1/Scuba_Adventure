@@ -61,7 +61,7 @@ const Navbar = () => {
             className="text-2xl md:text-3xl font-bold font-display tracking-wide bg-clip-text text-transparent"
             style={{
               backgroundImage:
-                "linear-gradient(to bottom, #1e6fb9 0%, #1e6fb9 56%, #facc15 50%, #facc15 100%)",
+                "linear-gradient(90deg, #0B3C5D 0%, #2EC4C6 55%, #FACC15 100%)",
             }}
           >
             SCUBABOSS
