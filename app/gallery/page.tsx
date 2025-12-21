@@ -154,8 +154,65 @@ export default function GalleryPage() {
     },
   ];
 
-  const filteredImages =
-    filter === "all" ? images : images.filter((img) => img.category === filter);
+  const filteredImages = (() => {
+    if (filter === "all") {
+      const marine = images.filter((img) => img.category === "marine");
+      const landscape = images.filter((img) => img.category === "landscape");
+      const training = images.filter((img) => img.category === "training");
+
+      const mixed = [];
+      let indices = { marine: 0, landscape: 0, training: 0 };
+
+      const cycleOrder = [
+        "marine",
+        "landscape",
+        "training",
+        "landscape",
+        "marine",
+        "training",
+        "training",
+        "landscape",
+        "marine",
+        "marine",
+        "training",
+        "landscape",
+      ];
+
+      let cycleIndex = 0;
+
+      while (
+        indices.marine < marine.length ||
+        indices.landscape < landscape.length ||
+        indices.training < training.length
+      ) {
+        const currentCategory = cycleOrder[cycleIndex % cycleOrder.length];
+        cycleIndex++;
+
+        const idx = indices[currentCategory];
+        if (
+          idx <
+          (currentCategory === "marine"
+            ? marine.length
+            : currentCategory === "landscape"
+            ? landscape.length
+            : training.length)
+        ) {
+          const image =
+            currentCategory === "marine"
+              ? marine[idx]
+              : currentCategory === "landscape"
+              ? landscape[idx]
+              : training[idx];
+          mixed.push(image);
+          indices[currentCategory]++;
+        }
+      }
+
+      return mixed;
+    }
+
+    return images.filter((img) => img.category === filter);
+  })();
 
   const categories = [
     { id: "all", label: "All Photos", icon: "🌊" },

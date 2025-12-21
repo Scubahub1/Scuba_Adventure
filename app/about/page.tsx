@@ -25,14 +25,19 @@ const murudeshwarImages = [
 
 const netraniImages = [
   {
-    src: "https://dzdqokmlsirlvzcyzxgj.supabase.co/storage/v1/object/public/Scubaimages/Netrani1.jpeg",
+    src: "https://dzdqokmlsirlvzcyzxgj.supabase.co/storage/v1/object/public/Scubaimages/Netrani1.png",
     alt: "Netrani Island Diving Waters",
     tag: "💙 Heart of Arabian Sea",
   },
   {
-    src: "https://dzdqokmlsirlvzcyzxgj.supabase.co/storage/v1/object/public/Scubaimages/Netrani3.jpeg",
+    src: "https://dzdqokmlsirlvzcyzxgj.supabase.co/storage/v1/object/public/Scubaimages/Netrani2.png",
     alt: "Pigeon Island Coral Reef",
     tag: "🐠 Pigeon Island Reefs",
+  },
+  {
+    src: "https://dzdqokmlsirlvzcyzxgj.supabase.co/storage/v1/object/public/Scubaimages/Netrani3.png",
+    alt: "Rocky Shores of Netrani Island",
+    tag: "🌊 Netrani Island Coastline",
   },
 ];
 
