@@ -235,8 +235,10 @@ export default function AboutPage() {
               We're always looking for passionate Dive Masters and ocean lovers.
             </p>
             <a
-              href="mailto:scubahub.adventures@gmail.com"
-              className="px-4 py-2 rounded-lg bg-blue-500 hover:bg-blue-900 transition text-white text-sm font-semibold"
+              href="https://wa.me/+917022295102?text=Hello%20Scuba%20Boss%20Team%21%0A%0AI%20am%20interested%20in%20joining%20your%20team%20as%20a%20Dive%20Master%2FInstructor.%0A%0APlease%20find%20my%20CV%20attached.%0A%0ALooking%20forward%20to%20diving%20with%20you%21%0A%0ABest%20regards%2C%0A[My%20Name]"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 transition-all duration-300 text-white font-bold shadow-lg hover:shadow-green-500/30 transform hover:-translate-y-1"
             >
               Send CV
             </a>
