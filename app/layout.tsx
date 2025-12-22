@@ -25,16 +25,41 @@ export const metadata: Metadata = {
   title: "Scuba Boss Adventures",
   description:
     "Experience world-class scuba diving at Netrani Island with Scuba Boss Adventures. PADI certified courses, fun dives, and underwater exploration in Karnataka.",
-  metadataBase: new URL("https://ScubaBoss.in"),
+
+  metadataBase: new URL("https://scubaboss.in"),
+
   alternates: {
-    canonical: "/",
+    canonical: "https://scubaboss.in",
   },
+
   icons: {
-    icon: "https://dzdqokmlsirlvzcyzxgj.supabase.co/storage/v1/object/public/Scubaimages/23.svg",
-    shortcut:
-      "https://dzdqokmlsirlvzcyzxgj.supabase.co/storage/v1/object/public/Scubaimages/23.svg",
-    apple:
-      "https://dzdqokmlsirlvzcyzxgj.supabase.co/storage/v1/object/public/Scubaimages/23.svg",
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
+  },
+
+  openGraph: {
+    type: "website",
+    url: "https://scubaboss.in",
+    title: "Scuba Boss Adventures",
+    description:
+      "Experience world-class scuba diving at Netrani Island with Scuba Boss Adventures. PADI certified courses, fun dives, and underwater exploration in Karnataka.",
+    images: [
+      {
+        url: "/favicon.png",
+        width: 512,
+        height: 512,
+        alt: "Scuba Boss Adventures Logo",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Scuba Boss Adventures",
+    description:
+      "Experience world-class scuba diving at Netrani Island with Scuba Boss Adventures. PADI certified courses, fun dives, and underwater exploration in Karnataka.",
+    images: ["/favicon.png"],
   },
 };
 
