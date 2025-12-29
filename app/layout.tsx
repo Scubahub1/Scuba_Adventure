@@ -26,10 +26,10 @@ export const metadata: Metadata = {
   description:
     "Experience world-class scuba diving at Netrani Island with Scuba Boss Adventures. PADI certified courses, fun dives, and underwater exploration in Karnataka.",
 
-  metadataBase: new URL("https://scubaboss.in"),
+  metadataBase: new URL("https://www.scubaboss.in"),
 
   alternates: {
-    canonical: "https://scubaboss.in",
+    canonical: "/",
   },
 
   icons: {
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
 
   openGraph: {
     type: "website",
-    url: "https://scubaboss.in",
+    url: "https://www.scubaboss.in",
     title: "Scuba Boss Adventures",
     description:
       "Experience world-class scuba diving at Netrani Island with Scuba Boss Adventures. PADI certified courses, fun dives, and underwater exploration in Karnataka.",
