@@ -1,12 +1,14 @@
 import React from "react";
 import type { Metadata } from "next";
 import { Inter, Montserrat } from "next/font/google";
+
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import ScrollToTop from "../components/ui/ScrollToTop";
 import ContactWidget from "../components/ui/ContactWidget";
 import SchemaMarkup from "../components/SEO/SchemaMarkup";
 import CanonicalUrl from "../components/SEO/CanonicalUrl";
+
 import "./globals.css";
 
 const inter = Inter({
@@ -33,10 +35,18 @@ export const metadata: Metadata = {
   },
 
   icons: {
-    icon: ["/favicon.ico", "/favicon.png"],
-    shortcut: "/favicon.ico",
-    apple: "/favicon.png",
+    icon: [
+      { url: "/favicon.ico" },
+      {
+        url: "/favicon-96x96.png",
+        sizes: "96x96",
+        type: "image/png",
+      },
+    ],
+    apple: "/apple-touch-icon.png",
   },
+
+  manifest: "/site.webmanifest",
 
   openGraph: {
     type: "website",
@@ -46,7 +56,7 @@ export const metadata: Metadata = {
       "Experience world-class scuba diving at Netrani Island with Scuba Boss Adventures. PADI certified courses, fun dives, and underwater exploration in Karnataka.",
     images: [
       {
-        url: "/favicon.png",
+        url: "/web-app-manifest-512x512.png",
         width: 512,
         height: 512,
         alt: "Scuba Boss Adventures Logo",
@@ -59,7 +69,7 @@ export const metadata: Metadata = {
     title: "Scuba Boss Adventures",
     description:
       "Experience world-class scuba diving at Netrani Island with Scuba Boss Adventures. PADI certified courses, fun dives, and underwater exploration in Karnataka.",
-    images: ["/favicon.png"],
+    images: ["/web-app-manifest-512x512.png"],
   },
 };
 

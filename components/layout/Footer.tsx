@@ -163,7 +163,7 @@ const Footer = async () => {
               rel="noopener noreferrer"
               className="text-blue-400 hover:text-blue-300 hover:underline transition duration-200"
             >
-              N.T. Hrutikkumar
+              Creative Partner
             </a>{" "}
             • Dive Beyond
           </p>
